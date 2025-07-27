@@ -25,7 +25,7 @@ const DemoModal = ({ demo, onClose }) => {
         <button className="modal-close-btn" onClick={onClose}>&times;</button>
         <div className="modal-body">
           <div className="modal-gallery">
-            <img src={demo.imageUrls[currentIndex]} alt={`Demo image ${currentIndex + 1}`} />
+            <img src={demo.imageUrls[currentIndex]} alt={`Demo ${currentIndex + 1}`} />
             {demo.imageUrls.length > 1 && (
               <div className="modal-gallery-nav">
                 <button onClick={goToPrevious}>{'<'}</button>

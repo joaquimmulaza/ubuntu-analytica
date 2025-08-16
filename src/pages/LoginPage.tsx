@@ -14,7 +14,7 @@ const LoginPage = () => {
     try {
       const token = await login({ username, password });
       localStorage.setItem("token", token);
-      window.location.href = "/"; // Redirect to the main panel
+      window.location.href = "/admin"; // Redirect to the admin panel
     } catch (err) {
       setError("Failed to login. Please check your credentials.");
     }

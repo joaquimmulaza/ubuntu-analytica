@@ -4,7 +4,6 @@ import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 const Footer = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 

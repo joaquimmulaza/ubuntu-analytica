@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { api } from "./convex/_generated/api";
 import './App.css';
 import ImageUploader from './components/ImageUploader';
-import ImageGallery from './components/ImageGallery';
 import DemoList from './components/DemoList';
 import PublicDemoGrid from './components/PublicDemoGrid';
 import ImagePreview from './components/ImagePreview';

@@ -61,7 +61,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
         >
             <div className="relative w-full h-64 md:h-96">
-              <img src='/img/cubos-data.png' alt='cubos-data' className='w-full h-full object-cover'/>
+              <img src='/img/cubos-data.webp' alt='cubos-data' className='w-full h-full object-cover'/>
                 {/* This is a placeholder for the floating cubes graphic. 
                 <div className="absolute top-10 right-20 w-16 h-16 bg-purple-500/50 rounded-lg transform rotate-12"></div>
                 <div className="absolute top-24 right-48 w-12 h-12 bg-purple-400/50 rounded-lg transform -rotate-12"></div>

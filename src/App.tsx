@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useMutation } from "convex/react";
+import { useAction } from "convex/react";
 import { api } from "./convex/_generated/api";
 import './App.css';
 import ImageUploader from './components/ImageUploader';
@@ -15,14 +16,20 @@ import Footer from './components/Footer';
 
 // Admin Panel Component
 const AdminPanel = () => {
+  const changePasswordAction = useAction(api.authActions.changePasswordAction);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
   const [imageStorageIds, setImageStorageIds] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [activeTab, setActiveTab] = useState('upload');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   const addDemo = useMutation(api.demos.add);
+  const changePassword = useMutation(api.auth.changePassword);
 
   const handleImagesUploaded = (ids: string[]) => {
     setImageStorageIds(prev => [...prev, ...ids]);
@@ -65,6 +72,53 @@ const AdminPanel = () => {
     }
   };
 
+const handlePasswordChange = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setPasswordMessage('');
+
+  if (newPassword !== confirmNewPassword) {
+    setPasswordMessage('As novas senhas não correspondem.');
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem('token');
+    console.log('🔍 Debug - Token found:', token ? 'Yes' : 'No');
+    console.log('🔍 Debug - Token value:', token);
+    console.log('🔍 Debug - Token length:', token?.length || 0);
+    
+    if (!token) {
+      setPasswordMessage('Token não encontrado. Faça login primeiro.');
+      return;
+    }
+
+    console.log('🔍 Debug - Calling changePasswordAction with:', {
+      token: token.substring(0, 20) + '...', // Mostra só os primeiros 20 chars por segurança
+      currentPassword: '***',
+      newPassword: '***',
+      confirmNewPassword: '***',
+    });
+
+    await changePasswordAction({
+      token,
+      currentPassword,
+      newPassword,
+      confirmNewPassword,
+    });
+    
+    console.log('✅ Password changed successfully');
+    setPasswordMessage('Senha alterada com sucesso!');
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+  } catch (error) {
+    console.log('❌ Error details:', error);
+    console.log('❌ Error message:', (error as Error).message);
+    setPasswordMessage(`Erro ao alterar a senha: ${(error as Error).message}`);
+    console.error('Erro ao alterar a senha:', error);
+  }
+};
+
   return (
     <div className="App-header">
       <h1>Painel de Demonstrações</h1>
@@ -81,6 +135,12 @@ const AdminPanel = () => {
           onClick={() => setActiveTab('list')}
         >
           Painel Administrativo
+        </button>
+        <button 
+          className={`tab ${activeTab === 'password' ? 'active' : ''}`}
+          onClick={() => setActiveTab('password')}
+        >
+          Alterar Senha
         </button>
       </div>
       
@@ -140,8 +200,42 @@ const AdminPanel = () => {
             </button>
           </form>
         </div>
-      ) : (
+      ) : activeTab === 'list' ? (
         <DemoList />
+      ) : (
+        <div className="upload-container">
+          <form onSubmit={handlePasswordChange}>
+            <div className="form-group">
+              <label>Senha Atual:</label>
+              <input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Nova Senha:</label>
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Confirmar Nova Senha:</label>
+              <input
+                type="password"
+                value={confirmNewPassword}
+                onChange={(e) => setConfirmNewPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Alterar Senha</button>
+            {passwordMessage && <p>{passwordMessage}</p>}
+          </form>
+        </div>
       )}
     </div>
   );

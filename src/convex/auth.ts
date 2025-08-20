@@ -1,33 +1,32 @@
-"use node";
-import { action } from "./_generated/server";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
-export const login = action({
+export const changePassword = mutation({
   args: {
-    username: v.string(),
-    password: v.string(),
+    userId: v.id("users"),
+    passwordHash: v.string(),
   },
-  handler: async (ctx, { username, password }) => {
-    const adminUsername = process.env.ADMIN_USERNAME;
-    const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
-    const jwtSecret = process.env.JWT_SECRET;
+  handler: async (ctx, { userId, passwordHash }) => {
+    await ctx.db.patch(userId, {
+      passwordHash: passwordHash,
+    });
+  },
+});
 
-    if (!adminUsername || !adminPasswordHash || !jwtSecret) {
-      throw new Error("Environment variables not set");
-    }
+export const getUserByUsername = query({
+  args: { username: v.string() },
+  handler: async (ctx, { username }) => {
+    return await ctx.db
+      .query("users")
+      .withIndex("by_username", (q) => q.eq("username", username))
+      .unique();
+  },
+});
 
-    if (username !== adminUsername) {
-      throw new Error("Invalid credentials");
-    }
-
-    const isPasswordCorrect = await bcrypt.compare(password, adminPasswordHash);
-    if (!isPasswordCorrect) {
-      throw new Error("Invalid credentials");
-    }
-
-    const token = jwt.sign({ username }, jwtSecret, { expiresIn: "8h" });
-    return token;
+// ✅ Nova função adicionada para buscar usuário por ID
+export const getUserById = query({
+  args: { userId: v.id("users") },
+  handler: async (ctx, { userId }) => {
+    return await ctx.db.get(userId);
   },
 });

@@ -6,7 +6,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const login = useAction(api.auth.login);
+ const login = useAction(api.authActions.login);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

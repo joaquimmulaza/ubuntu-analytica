@@ -32,12 +32,11 @@ const Header = () => {
           <NavLink to="servicos">Serviços</NavLink>
           <NavLink to="quem-somos">Quem somos</NavLink>
           <RouterLink to="/demos" className="hover:text-gray-300">Demos</RouterLink>
-          <NavLink to="contactos">Ajuda</NavLink>
         </nav>
         <div className="hidden md:flex items-center">
-          <button className="bg-white btn-meating text-black font-semibold py-2 px-6 rounded-full hover:bg-gray-200">
+          <RouterLink target='blank' to="https://forms.office.com/e/SnBMVQ6TLv" className="bg-white btn-meating text-black font-semibold py-2 px-6 rounded-full hover:bg-gray-200">
             Solicitar Reunião
-          </button>
+          </RouterLink>
         </div>
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none">

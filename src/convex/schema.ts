@@ -8,4 +8,8 @@ export default defineSchema({
     link: v.string(),
     imageUrls: v.array(v.string()),
   }),
+  users: defineTable({
+    username: v.string(),
+    passwordHash: v.string(),
+  }).index("by_username", ["username"]),
 });

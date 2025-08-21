@@ -23,6 +23,10 @@
   border-radius: 5px 0 0 5px;
 }
 .tab:nth-child(2){
+  border-radius: 0;
+}
+
+.tab:last-child {
   border-radius: 0 5px 5px 0;
 }
 

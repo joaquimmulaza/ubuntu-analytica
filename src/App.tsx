@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 
 // Admin Panel Component
 const AdminPanel = () => {
+  const logoutAction = useAction(api.authActions.logout);
   const changePasswordAction = useAction(api.authActions.changePasswordAction);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -27,6 +28,22 @@ const AdminPanel = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
+
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        await logoutAction({ token });
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      } catch (error) {
+        console.error('Logout failed:', error);
+        // Mesmo que o token seja inválido no backend, remove localmente
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
+    }
+  };
 
   const addDemo = useMutation(api.demos.add);
   const changePassword = useMutation(api.auth.changePassword);
@@ -141,6 +158,12 @@ const handlePasswordChange = async (e: React.FormEvent) => {
           onClick={() => setActiveTab('password')}
         >
           Alterar Senha
+        </button>
+        <button 
+          className="tab"
+          onClick={handleLogout}
+        >
+          Terminar Sessão
         </button>
       </div>
       

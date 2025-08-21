@@ -84,3 +84,24 @@ export const changePasswordAction = action({
     });
   },
 });
+
+export const logout = action({
+  args: {
+    token: v.string(),
+  },
+  handler: async (ctx, { token }) => {
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      throw new Error("Environment variable JWT_SECRET not set");
+    }
+
+    try {
+      jwt.verify(token, jwtSecret);
+    } catch (error: any) {
+      if (error.name === "TokenExpiredError") {
+        throw new Error("Token expired");
+      }
+      throw new Error("Invalid token");
+    }
+  },
+});

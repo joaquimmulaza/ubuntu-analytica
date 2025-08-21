@@ -46,8 +46,6 @@ const AdminPanel = () => {
   };
 
   const addDemo = useMutation(api.demos.add);
-  const changePassword = useMutation(api.auth.changePassword);
-
   const handleImagesUploaded = (ids: string[]) => {
     setImageStorageIds(prev => [...prev, ...ids]);
   };

@@ -1,31 +1,34 @@
-import React, { useEffect } from 'react';
-import { scroller } from 'react-scroll';
+import React from 'react';
 import HeroSection from '../components/sections/HeroSection';
-import ServicesSection from '../components/sections/ServicesSection'; // Now "O Nosso Processo"
-import DemosSection from '../components/sections/DemosSection';
 import AboutSection from '../components/sections/AboutSection';
+import ServicesSection from '../components/sections/ServicesSection';
 import ContactSection from '../components/sections/ContactSection';
-// import TeamSection from '../components/sections/TeamSection'; // Removed as not in plan/screenshots
+import DemosSection from '../components/sections/DemosSection';
+import ArticlesSection from '../components/sections/ArticlesSection';
+import { Element } from 'react-scroll';
 
 const HomePage = () => {
-  useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-      scroller.scrollTo(hash, {
-        duration: 500,
-        smooth: true,
-      });
-    }
-  }, []);
-
   return (
-    <main id="home">
-      <HeroSection />
-      <ServicesSection />
-      <DemosSection />
-      <AboutSection />
-      <ContactSection />
-    </main>
+    <div className="bg-gray-50">
+      <Element name="home">
+        <HeroSection />
+      </Element>
+      <Element name="processos">
+        <ServicesSection />
+      </Element>
+      <Element name="demos">
+        <DemosSection />
+      </Element>
+      <Element name="quem-somos">
+        <AboutSection />
+      </Element>
+      <Element name="artigos">
+        <ArticlesSection />
+      </Element>
+      <Element name="contactos">
+        <ContactSection />
+      </Element>
+    </div>
   );
 };
 

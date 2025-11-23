@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
 
 const HeroSection = () => {
-   const location = useLocation();
+  const location = useLocation();
   const isHomePage = location.pathname === '/';
 
   const NavLink = ({ to, children }) => {
@@ -20,56 +20,68 @@ const HeroSection = () => {
     );
   };
   return (
-    <section className="bg-gradient-to-br from-[#1E104E] via-[#2A145A] to-[#0B0B0F] text-white py-20 overflow-hidden">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
-        {/* Left Column */}
+    <section className="relative h-screen text-white overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/img/hero-main.webp"
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center items-center text-center">
+
         <motion.div
-          className="md:w-1/2"
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl"
         >
-          <div className="inline-flex items-center bg-gray-800/50 rounded-full px-4 py-1 text-sm mb-4">
-            <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-            Bem-Vindo
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Criatividade<br />
-            Excelência<br />
-            Resultado
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
+            Transformamos dados em<br />decisões
           </h1>
-          <p className="mt-6 text-lg max-w-lg">
-            Ajudamos empresas a desbloquear o poder dos seus dados com soluções de Business Intelligence personalizadas, que agregam valor à tomada de decisões, aumentando a eficiência operacional e impulsionando o crescimento do seu negócio.
+          <p className="text-xl md:text-2xl font-light mb-10 tracking-wide">
+            Business Intelligence & Data Engineering
           </p>
-          <div className="mt-8 flex items-center space-x-4">
-            <NavLink to="servicos" className="border border-white rounded-full px-6 py-2 hover:bg-white hover:text-black transition">
-              Ver Mais
-            </NavLink>
-            <Link to="/contactos" className="flex items-center space-x-2 hover:text-gray-300">
-              {/* Placeholder for phone icon */}
-              <span>&#9742;</span>
-              <span>Contacte-nos</span>
-            </Link>
+
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6 mb-16">
+            <RouterLink
+              to="/contactos"
+              className="bg-[#6366f1] hover:bg-[#5558dd] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 flex items-center"
+            >
+              Começar Projeto <span className="ml-2">→</span>
+            </RouterLink>
+            <RouterLink
+              to="/demos"
+              className="bg-transparent border border-gray-500 hover:border-white text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 flex items-center"
+            >
+              <span className="mr-2">▷</span> Ver Demos
+            </RouterLink>
+          </div>
+
+          <div className="text-sm text-gray-300 font-mono">
+            <p className="mb-2 uppercase tracking-wider text-xs text-gray-400">Stack Tecnológico:</p>
+            <p>Power BI • Tableau • Metabase • Python • Data Engineering (Kafka, Apache Hop, Pentaho)</p>
           </div>
         </motion.div>
 
-        {/* Right Column (Placeholder for decorative elements) */}
+        {/* Scroll Indicator */}
         <motion.div
-          className="md:w-1/2 mt-10 md:mt-0 flex justify-center items-center"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
         >
-            <div className="relative w-full h-64 md:h-96">
-              <img src='/img/cubos-data.webp' alt='cubos-data' className='w-full h-full object-cover'/>
-                {/* This is a placeholder for the floating cubes graphic. 
-                <div className="absolute top-10 right-20 w-16 h-16 bg-purple-500/50 rounded-lg transform rotate-12"></div>
-                <div className="absolute top-24 right-48 w-12 h-12 bg-purple-400/50 rounded-lg transform -rotate-12"></div>
-                <div className="absolute top-40 right-10 w-8 h-8 bg-indigo-500/50 rounded-lg transform rotate-45"></div>
-                <div className="absolute bottom-10 right-32 w-20 h-20 bg-purple-600/50 rounded-lg transform rotate-6"></div>
-                 <div className="absolute top-5 right-5 w-5 h-5 bg-indigo-400/50 rounded-lg transform rotate-12"></div> */}
-                {/* <p className="text-center text-gray-500">Elemento Gráfico</p> */}
-            </div>
+          <span className="text-xs mb-2 text-gray-400">Descobrir mais</span>
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center p-1">
+            <motion.div
+              className="w-1 h-2 bg-white rounded-full"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            />
+          </div>
         </motion.div>
       </div>
     </section>

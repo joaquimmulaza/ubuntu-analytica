@@ -13,6 +13,8 @@ import HomePage from './pages/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SinglePost from './components/SinglePost';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Admin Panel Component
 const AdminPanel = () => {
@@ -265,28 +267,31 @@ const handlePasswordChange = async (e: React.FormEvent) => {
 
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-white">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/demos" element={<PublicDemoGrid />} />
-            <Route 
-              path="/admin" 
-              element={
-                <ProtectedRoute>
-                  <AdminPanel />
-                </ProtectedRoute>
-              } 
-            />
-            {/* Add other routes here */}
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen bg-white">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/demos" element={<PublicDemoGrid />} />
+              <Route 
+                path="/admin" 
+                element={
+                  <ProtectedRoute>
+                    <AdminPanel />
+                  </ProtectedRoute>
+                } 
+              />
+              {/* Add other routes here */}
+              <Route path="/post/:slug" element={<SinglePost />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 

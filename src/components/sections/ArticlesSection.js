@@ -1,35 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-
-const articles = [
-    {
-        id: 1,
-        date: "1 de outubro de 2024",
-        readTime: "5 min",
-        title: "BI e eficiência operacional",
-        link: "#"
-    },
-    {
-        id: 2,
-        date: "15 de setembro de 2024",
-        readTime: "5 min",
-        title: "MVP de dados em 4 semanas",
-        link: "#"
-    },
-    {
-        id: 3,
-        date: "20 de agosto de 2024",
-        readTime: "5 min",
-        title: "O futuro das decisões em Angola",
-        link: "#"
-    }
-];
+// Certifique-se que este caminho está correto para o seu ficheiro sanityClient
+import { client } from '../../sanityClient';
+// NOTA: A antiga lista "const articles = [...]" FOI REMOVIDA daqui.
 
 const ArticlesSection = () => {
+    // 1. Aqui criamos a variável que vai segurar os artigos do Sanity
+    // Ela começa vazia ([]) e não com os dados provisórios
+    const [articles, setArticles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // 2. Esta query vai ao Sanity buscar os dados REAIS
+        const query = `*[_type == "post"] | order(_createdAt desc)[0...3] {
+            _id,
+            title,
+            publishedAt,
+            _createdAt,
+            "slug": slug.current,
+            // Truque para calcular tempo de leitura baseado no tamanho do texto
+            "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) + " min"
+        }`;
+
+        client.fetch(query)
+            .then((data) => {
+                console.log("Dados recebidos do Sanity:", data); // Adicionei isto para confirmar no console
+                setArticles(data); // Atualiza a variável 'articles' com os dados reais
+                setIsLoading(false);
+            })
+            .catch(console.error);
+    }, []);
+
+    // Função para formatar a data (ex: 2024-10-05 -> 5 de outubro de 2024)
+    const formatDate = (dateString) => {
+        if (!dateString) return "Data desconhecida";
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('pt-AO', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).format(date);
+    };
+
     return (
         <section id="artigos" className="py-24 bg-[#161b22] text-white font-mono">
             <div className="container mx-auto px-6">
-                {/* Header */}
                 <div className="text-center mb-16">
                     <motion.h2
                         className="text-4xl md:text-5xl font-bold mb-4"
@@ -50,11 +65,25 @@ const ArticlesSection = () => {
                     </motion.p>
                 </div>
 
-                {/* Articles Grid */}
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
-                    {articles.map((article, index) => (
+                    {/* Se estiver a carregar, mostra uma mensagem simples */}
+                    {isLoading && (
+                         <div className="col-span-3 text-center text-gray-500 animate-pulse">
+                             A carregar artigos...
+                         </div>
+                    )}
+
+                    {/* Se não houver artigos no Sanity, avisa */}
+                    {!isLoading && articles.length === 0 && (
+                        <div className="col-span-3 text-center text-yellow-500">
+                            Ainda não há artigos publicados no Sanity.
+                        </div>
+                    )}
+
+                    {/* Aqui fazemos o loop nos artigos REAIS do Sanity */}
+                    {!isLoading && articles.map((article, index) => (
                         <motion.div
-                            key={article.id}
+                            key={article._id}
                             className="bg-[#0d1117] border border-[#30363d] rounded-xl p-8 flex flex-col hover:border-[#58a6ff] transition-colors duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -64,20 +93,24 @@ const ArticlesSection = () => {
                             <div className="flex justify-between items-center mb-6 text-xs md:text-sm text-gray-400">
                                 <div className="flex items-center">
                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    {article.date}
+                                    {/* Data dinâmica do Sanity */}
+                                    {formatDate(article.publishedAt || article._createdAt)}
                                 </div>
                                 <div className="flex items-center border border-[#30363d] rounded-full px-3 py-1 text-[#58a6ff] bg-[#58a6ff]/10">
                                     <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    {article.readTime}
+                                    {/* Tempo de leitura dinâmico */}
+                                    {/* Se existir valor, mostra. Se não, mostra "2 min" fixo para não ficar vazio */}
+{article.estimatedReadingTime ? article.estimatedReadingTime : "1 min"}
                                 </div>
                             </div>
 
                             <h3 className="text-xl font-bold mb-8 flex-grow leading-tight">
+                                {/* Título dinâmico do Sanity */}
                                 {article.title}
                             </h3>
 
                             <a
-                                href={article.link}
+                                href={`/post/${article.slug}`} // Link dinâmico
                                 className="w-full border border-[#30363d] rounded-full py-3 px-6 text-center text-sm hover:bg-[#21262d] transition-colors flex items-center justify-center group"
                             >
                                 Ler mais
@@ -87,7 +120,6 @@ const ArticlesSection = () => {
                     ))}
                 </div>
 
-                {/* Footer Card */}
                 <motion.div
                     className="bg-[#0d1117] border border-[#30363d] rounded-2xl p-12 text-center max-w-3xl mx-auto"
                     initial={{ opacity: 0, scale: 0.95 }}

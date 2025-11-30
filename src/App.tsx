@@ -11,6 +11,7 @@ import ImagePreview from './components/ImagePreview';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import CareersPage from './pages/CareersPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SinglePost from './components/SinglePost';
@@ -58,14 +59,14 @@ const AdminPanel = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (imageStorageIds.length === 0) {
       alert('Por favor, faça upload de pelo menos uma imagem.');
       return;
     }
-    
+
     setIsUploading(true);
-    
+
     try {
       await addDemo({
         title,
@@ -73,12 +74,12 @@ const AdminPanel = () => {
         link,
         imageUrls: imageStorageIds,
       });
-      
+
       setTitle('');
       setDescription('');
       setLink('');
       setImageStorageIds([]);
-      
+
       alert('Demonstração adicionada com sucesso!');
       setActiveTab('list');
     } catch (error) {
@@ -89,84 +90,84 @@ const AdminPanel = () => {
     }
   };
 
-const handlePasswordChange = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setPasswordMessage('');
+  const handlePasswordChange = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasswordMessage('');
 
-  if (newPassword !== confirmNewPassword) {
-    setPasswordMessage('As novas senhas não correspondem.');
-    return;
-  }
-
-  try {
-    const token = localStorage.getItem('token');
-    console.log('🔍 Debug - Token found:', token ? 'Yes' : 'No');
-    console.log('🔍 Debug - Token value:', token);
-    console.log('🔍 Debug - Token length:', token?.length || 0);
-    
-    if (!token) {
-      setPasswordMessage('Token não encontrado. Faça login primeiro.');
+    if (newPassword !== confirmNewPassword) {
+      setPasswordMessage('As novas senhas não correspondem.');
       return;
     }
 
-    console.log('🔍 Debug - Calling changePasswordAction with:', {
-      token: token.substring(0, 20) + '...', // Mostra só os primeiros 20 chars por segurança
-      currentPassword: '***',
-      newPassword: '***',
-      confirmNewPassword: '***',
-    });
+    try {
+      const token = localStorage.getItem('token');
+      console.log('🔍 Debug - Token found:', token ? 'Yes' : 'No');
+      console.log('🔍 Debug - Token value:', token);
+      console.log('🔍 Debug - Token length:', token?.length || 0);
 
-    await changePasswordAction({
-      token,
-      currentPassword,
-      newPassword,
-      confirmNewPassword,
-    });
-    
-    console.log('✅ Password changed successfully');
-    setPasswordMessage('Senha alterada com sucesso!');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmNewPassword('');
-  } catch (error) {
-    console.log('❌ Error details:', error);
-    console.log('❌ Error message:', (error as Error).message);
-    setPasswordMessage(`Erro ao alterar a senha: ${(error as Error).message}`);
-    console.error('Erro ao alterar a senha:', error);
-  }
-};
+      if (!token) {
+        setPasswordMessage('Token não encontrado. Faça login primeiro.');
+        return;
+      }
+
+      console.log('🔍 Debug - Calling changePasswordAction with:', {
+        token: token.substring(0, 20) + '...', // Mostra só os primeiros 20 chars por segurança
+        currentPassword: '***',
+        newPassword: '***',
+        confirmNewPassword: '***',
+      });
+
+      await changePasswordAction({
+        token,
+        currentPassword,
+        newPassword,
+        confirmNewPassword,
+      });
+
+      console.log('✅ Password changed successfully');
+      setPasswordMessage('Senha alterada com sucesso!');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmNewPassword('');
+    } catch (error) {
+      console.log('❌ Error details:', error);
+      console.log('❌ Error message:', (error as Error).message);
+      setPasswordMessage(`Erro ao alterar a senha: ${(error as Error).message}`);
+      console.error('Erro ao alterar a senha:', error);
+    }
+  };
 
   return (
     <div className="App-header">
       <h1>Painel de Demonstrações</h1>
-      
+
       <div className="tabs">
-        <button 
+        <button
           className={`tab ${activeTab === 'upload' ? 'active' : ''}`}
           onClick={() => setActiveTab('upload')}
         >
           Upload de Demo
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'list' ? 'active' : ''}`}
           onClick={() => setActiveTab('list')}
         >
           Painel Administrativo
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'password' ? 'active' : ''}`}
           onClick={() => setActiveTab('password')}
         >
           Alterar Senha
         </button>
-        <button 
+        <button
           className="tab"
           onClick={handleLogout}
         >
           Terminar Sessão
         </button>
       </div>
-      
+
       {activeTab === 'upload' ? (
         <div className="upload-container">
           <form onSubmit={handleSubmit}>
@@ -188,35 +189,35 @@ const handlePasswordChange = async (e: React.FormEvent) => {
 
             <div className="form-group">
               <label>Título:</label>
-              <input 
+              <input
                 type="text"
                 value={title || ''}
                 onChange={(e) => setTitle(e.target.value)}
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <label>Descrição:</label>
-              <textarea 
-                value={description} 
-                onChange={(e) => setDescription(e.target.value)} 
-                required 
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
               />
             </div>
-            
+
             <div className="form-group">
               <label>Link para a Demo Interativa:</label>
-              <input 
-                type="url" 
-                value={link} 
-                onChange={(e) => setLink(e.target.value)} 
-                required 
+              <input
+                type="url"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                required
               />
             </div>
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               disabled={isUploading || imageStorageIds.length === 0}
             >
               {isUploading ? 'Adicionando...' : 'Adicionar Demo'}
@@ -276,16 +277,17 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/demos" element={<PublicDemoGrid />} />
-              <Route 
-                path="/admin" 
+              <Route
+                path="/admin"
                 element={
                   <ProtectedRoute>
                     <AdminPanel />
                   </ProtectedRoute>
-                } 
+                }
               />
               {/* Add other routes here */}
               <Route path="/post/:slug" element={<SinglePost />} />
+              <Route path="/candidaturas" element={<CareersPage />} />
             </Routes>
           </main>
           <Footer />

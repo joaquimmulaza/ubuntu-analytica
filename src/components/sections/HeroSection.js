@@ -8,13 +8,13 @@ const HeroSection = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const NavLink = ({ to, children }) => {
+  const NavLink = ({ to, children, className }) => {
     return isHomePage ? (
-      <ScrollLink to={to} smooth={true} duration={500} className="border border-white rounded-full px-6 py-2 hover:bg-white hover:text-black transition cursor-pointer">
+      <ScrollLink to={to} smooth={true} duration={500} className={className}>
         {children}
       </ScrollLink>
     ) : (
-      <RouterLink to={`/#${to}`} className="hover:text-gray-300">
+      <RouterLink to={`/#${to}`} className={className}>
         {children}
       </RouterLink>
     );
@@ -22,13 +22,10 @@ const HeroSection = () => {
   return (
     <section className="relative h-screen text-white overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/img/hero-main.webp"
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 z-0 bg-black">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-black to-purple-900/10"></div>
+        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center items-center text-center">
@@ -39,31 +36,31 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-tight mb-4">
             Transformamos dados em<br />decisões
           </h1>
-          <p className="text-xl md:text-2xl font-light mb-10 tracking-wide">
+          <p className="text-xl md:text-2xl font-body font-light mb-10 tracking-wide text-soft-neon-glow">
             Business Intelligence & Data Engineering
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6 mb-16">
-            <RouterLink
-              to="/contactos"
-              className="bg-[#6366f1] hover:bg-[#5558dd] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 flex items-center"
+            <NavLink
+              to="contactos"
+              className="w-56 bg-gradient-primary text-white font-body font-semibold py-3 px-8 rounded-full transition-all duration-300 flex items-center justify-center shadow-glow-soft hover:shadow-glow-medium hover:-translate-y-0.5 cursor-pointer"
             >
               Começar Projeto <span className="ml-2">→</span>
-            </RouterLink>
-            <RouterLink
-              to="/demos"
-              className="bg-transparent border border-gray-500 hover:border-white text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 flex items-center"
+            </NavLink>
+            <NavLink
+              to="demos"
+              className="w-56 bg-transparent border-2 border-soft-neon-glow/50 hover:border-electric-blue text-white font-body font-semibold py-[10px] px-[30px] rounded-full transition-all duration-300 flex items-center justify-center hover:shadow-glow-soft hover:bg-electric-blue/10 cursor-pointer"
             >
               <span className="mr-2">▷</span> Ver Demos
-            </RouterLink>
+            </NavLink>
           </div>
 
-          <div className="text-sm text-gray-300 font-mono">
-            <p className="mb-2 uppercase tracking-wider text-xs text-gray-400">Stack Tecnológico:</p>
-            <p>Power BI • Tableau • Metabase • Python • Data Engineering (Kafka, Apache Hop, Pentaho)</p>
+          <div className="text-sm text-soft-neon-glow/80 font-body">
+            <p className="mb-2 uppercase tracking-wider text-xs text-soft-neon-glow/60 font-semibold">Stack Tecnológico:</p>
+            <p className="font-light">Power BI • Tableau • Metabase • Python • Data Engineering (Kafka, Apache Hop, Pentaho)</p>
           </div>
         </motion.div>
 
@@ -74,10 +71,10 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
         >
-          <span className="text-xs mb-2 text-gray-400">Descobrir mais</span>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center p-1">
+          <span className="text-xs mb-2 text-soft-neon-glow/70 font-body font-semibold">Descobrir mais</span>
+          <div className="w-6 h-10 border-2 border-soft-neon-glow/50 rounded-full flex justify-center p-1 shadow-glow-soft">
             <motion.div
-              className="w-1 h-2 bg-white rounded-full"
+              className="w-1 h-2 bg-electric-blue rounded-full shadow-glow-soft"
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
             />

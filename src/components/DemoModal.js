@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const DemoModal = ({ demo, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMaximized, setIsMaximized] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
-    if (!demo) return null;
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!demo || !mounted) return null;
 
     const goToPrevious = (e) => {
         e.stopPropagation();
@@ -25,11 +32,11 @@ const DemoModal = ({ demo, onClose }) => {
         setCurrentIndex(slideIndex);
     };
 
-    return (
+    const modalContent = (
         <AnimatePresence>
             {/* Backdrop */}
             <motion.div
-                className="fixed inset-0 z-[60] bg-gray/80 backdrop-blur-sm flex items-center justify-center p-4"
+                className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -37,7 +44,7 @@ const DemoModal = ({ demo, onClose }) => {
             >
                 {/* Modal Content */}
                 <motion.div
-                    className="bg-[#1A1A1A] w-full max-w-6xl rounded-2xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col md:flex-row max-h-[90vh]"
+                    className="bg-[#1A1A1A] w-full max-w-6xl rounded-2xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col md:flex-row max-h-[90vh] relative"
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
@@ -52,7 +59,7 @@ const DemoModal = ({ demo, onClose }) => {
                     </button>
 
                     {/* Image Gallery Section */}
-                    <div className="w-full md:w-2/3 bg-gray relative flex items-center justify-center group">
+                    <div className="w-full md:w-2/3 bg-black relative flex items-center justify-center group">
                         <div className="relative w-full h-[300px] md:h-[600px]">
                             <img
                                 src={demo.imageUrls[currentIndex]}
@@ -133,7 +140,7 @@ const DemoModal = ({ demo, onClose }) => {
             {/* Maximized View */}
             {isMaximized && (
                 <div
-                    className="fixed inset-0 z-[70] bg-black flex items-center justify-center"
+                    className="fixed inset-0 z-[110] bg-black flex items-center justify-center"
                     onClick={() => setIsMaximized(false)}
                 >
                     <button
@@ -151,6 +158,8 @@ const DemoModal = ({ demo, onClose }) => {
             )}
         </AnimatePresence>
     );
+
+    return ReactDOM.createPortal(modalContent, document.body);
 };
 
 export default DemoModal;

@@ -1,16 +1,27 @@
+/* Ubuntu Analytica - Neon Edition Team Card Styles */
+
 .team-card {
-  background-color: #0B0B0F;
+  background: rgba(5, 5, 5, 0.8);
+  /* Midnight Black with transparency */
+  backdrop-filter: blur(16px) saturate(180%);
   color: white;
   padding: 2rem;
-  border-radius: 0.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  /* Neon border radius */
+  border: 1px solid rgba(197, 201, 255, 0.3);
+  /* Soft Neon Glow border */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   position: relative;
 }
 
 .team-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(63, 69, 255, 0.6);
+  /* Electric Blue on hover */
+  box-shadow: 0 0 30px rgba(63, 69, 255, 0.5),
+    0 0 60px rgba(87, 33, 198, 0.3);
+  /* Neon glow medium */
 }
 
 .team-card-image-wrapper {
@@ -21,7 +32,16 @@
   margin-right: auto;
   margin-bottom: 1rem;
   overflow: hidden;
-  border: 4px solid #907ee9 ; /* Cor roxa para combinar com o design */
+  border: 4px solid #3F45FF;
+  /* Electric Blue border */
+  box-shadow: 0 0 20px rgba(63, 69, 255, 0.4);
+  /* Glow effect */
+  transition: all 0.3s ease;
+}
+
+.team-card:hover .team-card-image-wrapper {
+  box-shadow: 0 0 30px rgba(63, 69, 255, 0.6),
+    0 0 60px rgba(87, 33, 198, 0.4);
 }
 
 .team-card img {
@@ -33,5 +53,5 @@
 
 .team-card-content {
   text-align: center;
+  font-family: 'Mulish', 'Muli', sans-serif;
 }
-

@@ -14,6 +14,7 @@ module.exports = {
 
         // Support Colors
         'midnight-black': '#050505',
+        'ubuntu-blue': '#0D1E2C', // New Brand Color
         'soft-neon-glow': '#C5C9FF',
 
         // Gradient stops for utilities

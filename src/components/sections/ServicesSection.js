@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import BackgroundEffect from '../BackgroundEffect';
 
 const steps = [
   {
@@ -59,14 +60,15 @@ const ServicesSection = () => {
   return (
     <section id="processos" className="relative py-24 text-white overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/img/image-nosso-processo-section.webp"
-          alt="Process Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/70"></div>
-      </div>
+      <BackgroundEffect
+        orb1Color="bg-electric-blue/5"
+        orb2Color="bg-cyber-purple/5"
+        orb1Position="bottom-20 left-20"
+        orb2Position="top-20 right-20"
+        gradientFrom="from-midnight-black"
+        gradientVia="via-blue-900/10"
+        gradientTo="to-midnight-black"
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">

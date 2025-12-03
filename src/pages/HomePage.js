@@ -9,7 +9,7 @@ import { Element } from 'react-scroll';
 
 const HomePage = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-midnight-black">
       <Element name="home">
         <HeroSection />
       </Element>

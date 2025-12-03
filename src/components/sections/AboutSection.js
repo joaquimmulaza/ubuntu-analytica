@@ -45,14 +45,17 @@ const boardMembers = [
 
 const TeamCard = ({ member }) => (
   <motion.div
-    className="bg-midnight-black/80 p-8 rounded-neon border border-soft-neon-glow/30 flex flex-col items-center text-center hover:border-electric-blue/60 transition-all duration-300 backdrop-blur-neon hover:shadow-glow-medium"
+    className="group relative bg-white/5 backdrop-blur-md p-8 rounded-neon border border-white/10 flex flex-col items-center text-center hover:border-neon-coral hover:bg-white/10 transition-all duration-300 hover:shadow-glow-medium overflow-hidden"
     whileHover={{ y: -5 }}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
   >
-    <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-electric-blue/30 shadow-glow-soft">
+    {/* Hover Glow Effect */}
+    <div className="absolute inset-0 bg-gradient-to-b from-neon-coral/0 to-neon-coral/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+    <div className="relative w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-electric-blue/30 shadow-glow-soft group-hover:border-neon-coral/50 transition-colors duration-300">
       <img
         src={member.image}
         alt={member.name}
@@ -63,8 +66,8 @@ const TeamCard = ({ member }) => (
         }}
       />
     </div>
-    <h3 className="text-xl font-heading font-extrabold text-white mb-2">{member.name}</h3>
-    <span className="inline-block bg-cyber-purple/30 text-soft-neon-glow text-xs font-body font-semibold px-3 py-1 rounded-full mb-6 border border-cyber-purple/50">
+    <h3 className="text-xl font-heading font-extrabold text-white mb-2 relative z-10">{member.name}</h3>
+    <span className="inline-block bg-cyber-purple/20 text-soft-neon-glow text-xs font-body font-semibold px-3 py-1 rounded-full mb-6 border border-cyber-purple/30 group-hover:border-neon-coral/30 group-hover:text-white transition-colors duration-300 relative z-10">
       {member.role}
     </span>
 
@@ -72,7 +75,7 @@ const TeamCard = ({ member }) => (
       href={member.linkedin}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center space-x-2 bg-gradient-primary hover:shadow-glow-medium text-white px-4 py-2 rounded-lg transition-all duration-300 text-sm font-body font-semibold"
+      className="relative z-10 flex items-center space-x-2 bg-gradient-primary hover:bg-gradient-secondary hover:shadow-glow-medium text-white px-4 py-2 rounded-lg transition-all duration-300 text-sm font-body font-semibold"
     >
       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
       <span>LinkedIn</span>
@@ -82,8 +85,20 @@ const TeamCard = ({ member }) => (
 
 const AboutSection = () => {
   return (
-    <section id="quem-somos" className="py-24 bg-midnight-black text-white">
-      <div className="container mx-auto px-6">
+    <section id="quem-somos" className="py-24 bg-midnight-black text-white relative overflow-hidden">
+      {/* Background Transition & Ambient Glow */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Base Gradient: Pure Black (matches previous section) -> Blue -> Dark (matches next section) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-ubuntu-blue to-midnight-black"></div>
+
+        {/* Radial Spotlights for "Fog" effect */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
+          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-soft-neon-glow/5 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]"></div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-20">
           <motion.h2
@@ -95,7 +110,7 @@ const AboutSection = () => {
             Quem Somos
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl text-soft-neon-glow/80 max-w-3xl mx-auto font-body font-light"
+            className="text-lg md:text-xl text-soft-neon-glow/90 max-w-3xl mx-auto font-body font-light"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -136,3 +151,4 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+

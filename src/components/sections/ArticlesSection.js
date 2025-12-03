@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import BackgroundEffect from '../BackgroundEffect';
 // Certifique-se que este caminho está correto para o seu ficheiro sanityClient
 import { client } from '../../sanityClient';
 // NOTA: A antiga lista "const articles = [...]" FOI REMOVIDA daqui.
@@ -43,8 +44,17 @@ const ArticlesSection = () => {
     };
 
     return (
-        <section id="artigos" className="py-24 bg-midnight-black text-white">
-            <div className="container mx-auto px-6">
+        <section id="artigos" className="py-24 text-white relative overflow-hidden">
+            <BackgroundEffect
+                orb1Color="bg-cyber-purple/5"
+                orb2Color="bg-neon-coral/5"
+                orb1Position="top-20 left-20"
+                orb2Position="bottom-20 right-20"
+                gradientFrom="from-midnight-black"
+                gradientVia="via-purple-900/10"
+                gradientTo="to-midnight-black"
+            />
+            <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
                     <motion.h2
                         className="text-4xl md:text-5xl font-heading font-extrabold mb-4"

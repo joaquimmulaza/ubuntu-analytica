@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import DemoModal from '../DemoModal';
+import BackgroundEffect from '../BackgroundEffect';
 
 const DemosSection = () => {
   const demos = useQuery(api.demos.list) || [];
@@ -42,14 +43,15 @@ const DemosSection = () => {
   return (
     <section id="demos" className="relative py-24 text-white overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/img/image-demos-section.webp"
-          alt="Demos Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/80"></div>
-      </div>
+      <BackgroundEffect
+        orb1Color="bg-indigo-500/5"
+        orb2Color="bg-pink-500/5"
+        orb1Position="top-1/4 -left-20"
+        orb2Position="bottom-1/4 -right-20"
+        gradientFrom="from-midnight-black"
+        gradientVia="via-indigo-900/10"
+        gradientTo="to-black"
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-12">

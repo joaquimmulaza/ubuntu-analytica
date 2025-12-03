@@ -94,26 +94,7 @@ const Header = () => {
           <NavLink to="contactos">Contactos</NavLink>
         </nav>
 
-        {/* CTA Button - Desktop */}
-        <div className="hidden md:flex items-center">
-          {isHomePage ? (
-            <ScrollLink
-              to="contactos"
-              smooth={true}
-              duration={500}
-              className="bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-2.5 px-6 rounded-full transition-all duration-300 shadow-glow-soft cursor-pointer text-sm"
-            >
-              Começar
-            </ScrollLink>
-          ) : (
-            <RouterLink
-              to="/#contactos"
-              className="bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-2.5 px-6 rounded-full transition-all duration-300 shadow-glow-soft text-sm"
-            >
-              Começar
-            </RouterLink>
-          )}
-        </div>
+        
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">

@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
+import BackgroundEffect from '../BackgroundEffect';
 import { Link } from 'react-router-dom';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -10,9 +9,7 @@ const HeroSection = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const particlesInit = useCallback(async engine => {
-    await loadSlim(engine);
-  }, []);
+
 
   const NavLink = ({ to, children, className }) => {
     return isHomePage ? (
@@ -27,89 +24,11 @@ const HeroSection = () => {
   };
   return (
     <section className="relative h-screen text-white overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0 bg-black">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-black to-purple-900/10"></div>
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl"></div>
-        <Particles
-          id="tsparticles"
-          init={particlesInit}
-          options={{
-            fullScreen: { enable: false },
-            background: {
-              color: {
-                value: "transparent",
-              },
-            },
-            fpsLimit: 120,
-            interactivity: {
-              events: {
-                onClick: {
-                  enable: true,
-                  mode: "push",
-                },
-                onHover: {
-                  enable: true,
-                  mode: "grab",
-                },
-                resize: true,
-              },
-              modes: {
-                push: {
-                  quantity: 4,
-                },
-                grab: {
-                  distance: 140,
-                  links: {
-                    opacity: 0.5
-                  }
-                },
-              },
-            },
-            particles: {
-              color: {
-                value: ["#3F45FF", "#5721C6", "#FF5F4D"],
-              },
-              links: {
-                color: "#C5C9FF",
-                distance: 150,
-                enable: true,
-                opacity: 0.2,
-                width: 1,
-              },
-              move: {
-                direction: "none",
-                enable: true,
-                outModes: {
-                  default: "bounce",
-                },
-                random: false,
-                speed: 1,
-                straight: false,
-              },
-              number: {
-                density: {
-                  enable: true,
-                  area: 800,
-                },
-                value: 60,
-              },
-              opacity: {
-                value: 0.3,
-              },
-              shape: {
-                type: "circle",
-              },
-              size: {
-                value: { min: 1, max: 3 },
-              },
-            },
-            detectRetina: true,
-          }}
-          className="absolute inset-0"
-        />
-      </div>
+      <BackgroundEffect
+        gradientFrom="from-black"
+        gradientVia="via-purple-900/20"
+        gradientTo="to-midnight-black"
+      />
 
       <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center items-center text-center">
 

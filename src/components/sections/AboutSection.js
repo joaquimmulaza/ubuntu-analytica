@@ -45,7 +45,7 @@ const boardMembers = [
 
 const TeamCard = ({ member }) => (
   <motion.div
-    className="group relative bg-white/5 backdrop-blur-md p-8 rounded-neon border border-white/10 flex flex-col items-center text-center hover:border-neon-coral hover:bg-white/10 transition-all duration-300 hover:shadow-glow-medium overflow-hidden"
+    className="group relative bg-white/5 backdrop-blur-md p-8 rounded-neon border border-white/10 flex flex-col items-center text-center hover:border-electric-blue/60 hover:bg-white/10 transition-all duration-300 hover:shadow-glow-medium overflow-hidden"
     whileHover={{ y: -5 }}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -53,9 +53,9 @@ const TeamCard = ({ member }) => (
     transition={{ duration: 0.5 }}
   >
     {/* Hover Glow Effect */}
-    <div className="absolute inset-0 bg-gradient-to-b from-neon-coral/0 to-neon-coral/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+    <div className="absolute inset-0 bg-gradient-to-b from-electric-blue/0 to-electric-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
-    <div className="relative w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-electric-blue/30 shadow-glow-soft group-hover:border-neon-coral/50 transition-colors duration-300">
+    <div className="relative w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-electric-blue/30 shadow-glow-soft group-hover:border-electric-blue/50 transition-colors duration-300">
       <img
         src={member.image}
         alt={member.name}
@@ -67,7 +67,7 @@ const TeamCard = ({ member }) => (
       />
     </div>
     <h3 className="text-xl font-heading font-extrabold text-white mb-2 relative z-10">{member.name}</h3>
-    <span className="inline-block bg-cyber-purple/20 text-soft-neon-glow text-xs font-body font-semibold px-3 py-1 rounded-full mb-6 border border-cyber-purple/30 group-hover:border-neon-coral/30 group-hover:text-white transition-colors duration-300 relative z-10">
+    <span className="inline-block bg-cyber-purple/20 text-soft-neon-glow text-xs font-body font-semibold px-3 py-1 rounded-full mb-6 border border-cyber-purple/30 group-hover:border-electric-blue/30 group-hover:text-white transition-colors duration-300 relative z-10">
       {member.role}
     </span>
 

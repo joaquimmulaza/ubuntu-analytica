@@ -3,18 +3,27 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       // Ubuntu Analytica - Neon Edition Brand Colors
       colors: {
-        // Primary Colors
+        // Primary Colors (same in both themes)
         'electric-blue': '#3F45FF',
         'cyber-purple': '#5721C6',
         'neon-coral': '#FF5F4D',
 
-        // Support Colors
+        // Dynamic colors that change with theme
+        'theme': {
+          'bg': 'var(--color-midnight-black)',
+          'text': 'var(--color-white)',
+          'secondary': 'var(--color-soft-neon-glow)',
+          'surface': 'var(--color-surface, var(--color-midnight-black))',
+        },
+
+        // Support Colors (for dark mode)
         'midnight-black': '#050505',
-        'ubuntu-blue': '#0D1E2C', // New Brand Color
+        'ubuntu-blue': '#0D1E2C',
         'soft-neon-glow': '#C5C9FF',
 
         // Gradient stops for utilities

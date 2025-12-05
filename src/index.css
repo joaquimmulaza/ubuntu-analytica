@@ -23,22 +23,22 @@
   --color-electric-blue: #3F45FF;
   --color-cyber-purple: #5721C6;
   --color-neon-coral: #FF5F4D;
-  
+
   /* Colors - Support */
   --color-midnight-black: #050505;
   --color-white: #FFFFFF;
   --color-soft-neon-glow: #C5C9FF;
-  
+
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #3F45FF 0%, #5721C6 100%);
   --gradient-secondary: linear-gradient(90deg, #3F45FF 0%, #FF5F4D 100%);
   --gradient-tertiary: linear-gradient(180deg, #5721C6 0%, #FF5F4D 100%);
   --gradient-radial-neon: radial-gradient(circle, #3F45FF 0%, #5721C6 50%, #050505 100%);
-  
+
   /* Typography */
   --font-heading: 'League Spartan', sans-serif;
   --font-body: 'Mulish', 'Muli', sans-serif;
-  
+
   /* Spacing (8px base) */
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -48,21 +48,56 @@
   --space-8: 4rem;
   --space-12: 6rem;
   --space-16: 8rem;
-  
+
   /* Border Radius */
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
   --radius-full: 9999px;
-  
+
   /* Shadows - Neon Glow */
   --shadow-glow-soft: 0 0 20px rgba(63, 69, 255, 0.3);
   --shadow-glow-medium: 0 0 30px rgba(63, 69, 255, 0.5), 0 0 60px rgba(87, 33, 198, 0.3);
   --shadow-glow-strong: 0 0 40px rgba(63, 69, 255, 0.8), 0 0 80px rgba(87, 33, 198, 0.5), 0 0 120px rgba(255, 95, 77, 0.3);
-  
+
   /* Text Shadow - Neon Glow */
   --text-shadow-glow: 0 0 20px rgba(63, 69, 255, 0.8), 0 0 40px rgba(63, 69, 255, 0.5);
   --text-shadow-glow-strong: 0 0 30px rgba(63, 69, 255, 1), 0 0 60px rgba(63, 69, 255, 0.7);
+}
+
+/* ============================================
+   Light Mode Theme Variables
+   ============================================ */
+
+[data-theme="light"] {
+  /* Colors - Primary (maintained for consistency) */
+  --color-electric-blue: #3F45FF;
+  --color-cyber-purple: #5721C6;
+  --color-neon-coral: #FF5F4D;
+
+  /* Colors - Background & Surface */
+  --color-midnight-black: #F8F9FA;
+  --color-white: #1A1D29;
+  --color-soft-neon-glow: #4A5568;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #E9ECEF;
+  --color-border-light: rgba(63, 69, 255, 0.15);
+  --color-border-medium: rgba(63, 69, 255, 0.25);
+
+  /* Gradients - Adjusted for light mode */
+  --gradient-primary: linear-gradient(135deg, #3F45FF 0%, #5721C6 100%);
+  --gradient-secondary: linear-gradient(90deg, #3F45FF 0%, #FF5F4D 100%);
+  --gradient-tertiary: linear-gradient(180deg, #5721C6 0%, #FF5F4D 100%);
+  --gradient-radial-neon: radial-gradient(circle, #3F45FF 0%, #5721C6 50%, #F8F9FA 100%);
+
+  /* Shadows - Subtle for light mode */
+  --shadow-glow-soft: 0 0 20px rgba(63, 69, 255, 0.12);
+  --shadow-glow-medium: 0 0 30px rgba(63, 69, 255, 0.18), 0 0 60px rgba(87, 33, 198, 0.1);
+  --shadow-glow-strong: 0 0 40px rgba(63, 69, 255, 0.25), 0 0 80px rgba(87, 33, 198, 0.15), 0 0 120px rgba(255, 95, 77, 0.1);
+
+  /* Text Shadow - Subtle for light mode */
+  --text-shadow-glow: 0 0 10px rgba(63, 69, 255, 0.2), 0 0 20px rgba(63, 69, 255, 0.1);
+  --text-shadow-glow-strong: 0 0 15px rgba(63, 69, 255, 0.3), 0 0 30px rgba(63, 69, 255, 0.15);
 }
 
 /* ============================================
@@ -76,10 +111,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-midnight-black);
   color: var(--color-white);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* ============================================
+   Global Theme Overrides for Tailwind Classes
+   ============================================ */
+
+/* Override text-white to use theme variable */
+.text-white {
+  color: var(--color-white) !important;
+}
+
+/* Override bg-midnight-black to use theme variable */
+.bg-midnight-black {
+  background-color: var(--color-midnight-black) !important;
+}
+
+/* Sections should respect theme background */
+section {
+  background-color: var(--color-midnight-black);
+  color: var(--color-white);
+}
+
+/* Ensure inputs and textareas respect theme */
+input,
+textarea {
+  color: var(--color-white);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-soft-neon-glow);
+  opacity: 0.5;
 }
 
 /* ============================================
@@ -122,15 +190,24 @@ code {
   box-shadow: 0 8px 32px rgba(63, 69, 255, 0.15);
 }
 
+[data-theme="light"] .glass-neon {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(63, 69, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(63, 69, 255, 0.08);
+}
+
 /* ============================================
    Animation Keyframes
    ============================================ */
 
 /* Float Animation */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -142,9 +219,12 @@ code {
 
 /* Glow Pulse Animation */
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(63, 69, 255, 0.5);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(63, 69, 255, 0.8);
   }
@@ -159,9 +239,11 @@ code {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ThemeProvider } from './context/ThemeContext';
 
 const convex = new ConvexReactClient(process.env.REACT_APP_CONVEX_URL!);
 
@@ -12,9 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ConvexProvider client={convex}>
-      <App />
-    </ConvexProvider>
+    <ThemeProvider>
+      <ConvexProvider client={convex}>
+        <App />
+      </ConvexProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

@@ -124,18 +124,18 @@ const DemosSection = () => {
         </div>
 
         {/* CTA Card - Separated for better spacing */}
-        <div className="relative rounded-2xl overflow-hidden bg-midnight-black/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-5xl mx-auto">
-          <div className="relative z-10 py-16 px-6 text-center">
-            <h3 className="text-3xl md:text-4xl font-heading font-extrabold mb-4">
+        <div className="relative rounded-xl overflow-hidden bg-midnight-black/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto">
+          <div className="relative z-10 py-8 px-6 text-center">
+            <h3 className="text-2xl md:text-3xl font-heading font-extrabold mb-3">
               Quer ver uma demo personalizada?
             </h3>
-            <p className="text-soft-neon-glow/80 mb-8 max-w-2xl mx-auto font-body text-sm md:text-base">
+            <p className="text-soft-neon-glow/80 mb-6 max-w-xl mx-auto font-body text-base">
               Agende uma sessão de 30 minutos para explorarmos como estas<br />
               soluções se aplicam ao seu negócio específico
             </p>
             <Link
               to="/contactos"
-              className="bg-gradient-primary hover:shadow-glow-strong text-white font-body font-semibold py-3 px-8 rounded-full transition-all duration-300 inline-block shadow-glow-soft"
+              className="bg-gradient-primary hover:shadow-glow-strong text-white font-body font-semibold py-2 px-6 text-sm rounded-full transition-all duration-300 inline-block shadow-glow-soft"
             >
               Agendar Demo Personalizada
             </Link>

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import BackgroundEffect from '../BackgroundEffect';
 // Certifique-se que este caminho está correto para o seu ficheiro sanityClient
 import { client } from '../../sanityClient';
-// NOTA: A antiga lista "const articles = [...]" FOI REMOVIDA daqui.
 
 const ArticlesSection = () => {
     // 1. Aqui criamos a variável que vai segurar os artigos do Sanity
@@ -25,8 +24,8 @@ const ArticlesSection = () => {
 
         client.fetch(query)
             .then((data) => {
-                console.log("Dados recebidos do Sanity:", data); // Adicionei isto para confirmar no console
-                setArticles(data); // Atualiza a variável 'articles' com os dados reais
+                console.log("Dados recebidos do Sanity:", data);
+                setArticles(data);
                 setIsLoading(false);
             })
             .catch(console.error);
@@ -75,17 +74,17 @@ const ArticlesSection = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 mb-20">
+                <div className="flex flex-wrap justify-center gap-8 mb-20">
                     {/* Se estiver a carregar, mostra uma mensagem simples */}
                     {isLoading && (
-                        <div className="col-span-3 text-center text-soft-neon-glow/60 animate-pulse font-body">
+                        <div className="w-full text-center text-soft-neon-glow/60 animate-pulse font-body">
                             A carregar artigos...
                         </div>
                     )}
 
                     {/* Se não houver artigos no Sanity, avisa */}
                     {!isLoading && articles.length === 0 && (
-                        <div className="col-span-3 text-center text-neon-coral font-body">
+                        <div className="w-full text-center text-neon-coral font-body">
                             Ainda não há artigos publicados no Sanity.
                         </div>
                     )}
@@ -94,7 +93,7 @@ const ArticlesSection = () => {
                     {!isLoading && articles.map((article, index) => (
                         <motion.div
                             key={article._id}
-                            className="bg-midnight-black/80 border border-soft-neon-glow/30 rounded-neon p-8 flex flex-col hover:border-electric-blue/60 transition-all duration-300 backdrop-blur-neon hover:shadow-glow-medium"
+                            className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] max-w-md bg-midnight-black/80 border border-soft-neon-glow/30 rounded-neon p-8 flex flex-col hover:border-electric-blue/60 transition-all duration-300 backdrop-blur-neon hover:shadow-glow-medium"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}

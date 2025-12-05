@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,7 +95,10 @@ const Header = () => {
           <NavLink to="contactos">Contactos</NavLink>
         </nav>
 
-        
+        {/* Theme Toggle */}
+        <div className="hidden md:block">
+          <ThemeToggle />
+        </div>
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
@@ -142,6 +146,11 @@ const Header = () => {
               Começar
             </RouterLink>
           )}
+
+          {/* Theme Toggle - Mobile */}
+          <div className="mt-4">
+            <ThemeToggle />
+          </div>
         </nav>
       </div>
     </header>

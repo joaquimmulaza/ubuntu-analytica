@@ -87,34 +87,71 @@ const ServicesSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.id}
-              className="flex flex-col items-center text-center w-full md:w-1/5 px-2 mb-12 md:mb-0 relative"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
+              className="group relative flex flex-col items-center text-center w-full md:w-1/5 p-4 rounded-2xl transition-all duration-300"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+              variants={{
+                rest: {
+                  backgroundColor: "rgba(255, 255, 255, 0)",
+                  borderColor: "rgba(255, 255, 255, 0)",
+                  y: 0
+                },
+                hover: {
+                  backgroundColor: "rgba(22, 27, 34, 0.8)",
+                  borderColor: "rgba(63, 69, 255, 0.3)",
+                  y: -10,
+                  boxShadow: "0 0 30px rgba(63, 69, 255, 0.15)",
+                  backdropFilter: "blur(12px)"
+                }
+              }}
+              style={{ border: '1px solid transparent' }} // Base border for transition
             >
               {/* Step Number Bubble */}
-              <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center font-heading font-extrabold text-white mb-4 shadow-glow-soft z-10">
+              <motion.div
+                className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center font-heading font-extrabold text-white mb-4 shadow-glow-soft z-10"
+                variants={{
+                  rest: { scale: 1 },
+                  hover: { scale: 1.1, boxShadow: "0 0 20px rgba(63, 69, 255, 0.6)" }
+                }}
+              >
                 {step.id}
-              </div>
+              </motion.div>
 
               {/* Icon Box */}
-              <div className="w-20 h-20 bg-midnight-black/60 backdrop-blur-neon rounded-neon flex items-center justify-center mb-6 border border-soft-neon-glow/30 hover:border-electric-blue/60 transition-all duration-300 group hover:shadow-glow-medium">
-                <div className="group-hover:scale-110 transition-transform duration-300">
+              <motion.div
+                className="w-20 h-20 bg-midnight-black/60 backdrop-blur-neon rounded-neon flex items-center justify-center mb-4 border border-soft-neon-glow/30 z-10"
+                variants={{
+                  rest: { borderColor: "rgba(197, 201, 255, 0.3)", scale: 1 },
+                  hover: { borderColor: "rgba(63, 69, 255, 0.8)", scale: 1.05, boxShadow: "0 0 20px rgba(63, 69, 255, 0.3)" }
+                }}
+              >
+                <div className="text-electric-blue">
                   {step.icon}
                 </div>
-              </div>
+              </motion.div>
 
-              <h3 className="text-xl font-heading font-extrabold mb-3">{step.title}</h3>
-              <p className="text-sm text-soft-neon-glow/70 leading-relaxed px-2 font-body">
-                {step.description}
-              </p>
+              <h3 className="text-xl font-heading font-extrabold mb-2 z-10">{step.title}</h3>
 
-              {/* Arrow (except for last item) */}
+              {/* Description Reveal */}
+              <motion.div
+                className="overflow-hidden"
+                variants={{
+                  rest: { opacity: 0, height: 0, marginTop: 0 },
+                  hover: { opacity: 1, height: "auto", marginTop: 10 }
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <p className="text-sm text-soft-neon-glow/70 leading-relaxed font-body">
+                  {step.description}
+                </p>
+              </motion.div>
+
+              {/* Arrow (except for last item) - Positioned absolutely to not be affected by card growth */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-20 -right-1/2 transform translate-x-1/2 text-gray-600">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                <div className="hidden md:block absolute top-1/2 -right-1/2 transform translate-x-1/2 -translate-y-full text-soft-neon-glow/20 pointer-events-none">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                   </svg>
                 </div>
               )}
@@ -124,24 +161,24 @@ const ServicesSection = () => {
 
         {/* Pronto para começar? CTA Card */}
         <motion.div
-          className="mt-20 relative rounded-2xl overflow-hidden bg-midnight-black/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-5xl mx-auto"
+          className="mt-16 relative rounded-xl overflow-hidden bg-midnight-black/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <div className="py-12 px-6 text-center">
-            <h3 className="text-3xl md:text-4xl font-heading font-extrabold mb-4">
+          <div className="py-8 px-6 text-center">
+            <h3 className="text-2xl md:text-3xl font-heading font-extrabold mb-3">
               Pronto para começar?
             </h3>
-            <p className="text-lg text-soft-neon-glow/80 mb-8 max-w-2xl mx-auto font-body">
+            <p className="text-base text-soft-neon-glow/80 mb-6 max-w-xl mx-auto font-body">
               Agende a sua sessão de descoberta gratuita e vamos avaliar como podemos ajudar o seu negócio
             </p>
             <a
               href="https://calendly.com/ubuntu-analytica/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-gradient-primary hover:shadow-glow-strong text-white font-body font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-glow-soft"
+              className="inline-flex items-center bg-gradient-primary hover:shadow-glow-strong text-white font-body font-semibold py-2 px-6 text-sm rounded-full transition-all duration-300 shadow-glow-soft"
             >
               Agendar Sessão de Descoberta <span className="ml-2">→</span>
             </a>

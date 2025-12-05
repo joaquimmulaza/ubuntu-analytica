@@ -48,7 +48,7 @@ const ContactSection = () => {
             transition={{ duration: 0.5 }}
           >
             {/* Form Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-neon-coral/5 rounded-full blur-[80px] pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-electric-blue/5 rounded-full blur-[80px] pointer-events-none"></div>
 
             <div className="flex items-center mb-6 relative z-10">
               <svg className="w-6 h-6 text-electric-blue mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
@@ -62,27 +62,27 @@ const ContactSection = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Nome *</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-neon-coral transition-colors font-body placeholder-white/20" placeholder="Seu nome" />
+                  <input type="text" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-electric-blue transition-colors font-body placeholder-white/20" placeholder="Seu nome" />
                 </div>
                 <div>
                   <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Email *</label>
-                  <input type="email" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-neon-coral transition-colors font-body placeholder-white/20" placeholder="seu@email.com" />
+                  <input type="email" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-electric-blue transition-colors font-body placeholder-white/20" placeholder="seu@email.com" />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Empresa</label>
-                <input type="text" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-neon-coral transition-colors font-body placeholder-white/20" placeholder="Sua empresa" />
+                <input type="text" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-electric-blue transition-colors font-body placeholder-white/20" placeholder="Sua empresa" />
               </div>
 
               <div>
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Telefone (opcional)</label>
-                <input type="tel" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-neon-coral transition-colors font-body placeholder-white/20" placeholder="+244 ..." />
+                <input type="tel" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-electric-blue transition-colors font-body placeholder-white/20" placeholder="+244 ..." />
               </div>
 
               <div>
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Mensagem *</label>
-                <textarea rows="4" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-neon-coral transition-colors font-body placeholder-white/20" placeholder="Como podemos ajudar?"></textarea>
+                <textarea rows="4" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white focus:outline-none focus:border-electric-blue transition-colors font-body placeholder-white/20" placeholder="Como podemos ajudar?"></textarea>
               </div>
 
               <button type="submit" className="w-full bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-3 rounded-full transition-all duration-300 flex items-center justify-center shadow-glow-soft">

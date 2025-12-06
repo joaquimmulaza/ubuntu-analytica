@@ -45,7 +45,7 @@ const boardMembers = [
 
 const TeamCard = ({ member }) => (
   <motion.div
-    className="group relative bg-white/5 backdrop-blur-md p-8 rounded-neon border border-white/10 flex flex-col items-center text-center hover:border-electric-blue/60 hover:bg-white/10 transition-all duration-300 hover:shadow-glow-medium overflow-hidden"
+    className="group relative bg-surface backdrop-blur-md p-8 rounded-neon border border-white/10 flex flex-col items-center text-center hover:border-electric-blue/60 hover:bg-surface/90 transition-all duration-300 hover:shadow-glow-medium overflow-hidden"
     whileHover={{ y: -5 }}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ const TeamCard = ({ member }) => (
       />
     </div>
     <h3 className="text-xl font-heading font-extrabold text-white mb-2 relative z-10">{member.name}</h3>
-    <span className="inline-block bg-cyber-purple/20 text-soft-neon-glow text-xs font-body font-semibold px-3 py-1 rounded-full mb-6 border border-cyber-purple/30 group-hover:border-electric-blue/30 group-hover:text-white transition-colors duration-300 relative z-10">
+    <span className="inline-block bg-cyber-purple/20 text-soft-neon-glow/90 text-xs font-body font-semibold px-3 py-1 rounded-full mb-6 border border-cyber-purple/30 group-hover:border-electric-blue/30 group-hover:text-white transition-colors duration-300 relative z-10">
       {member.role}
     </span>
 
@@ -89,7 +89,7 @@ const AboutSection = () => {
       {/* Background Transition & Ambient Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Base Gradient: Pure Black (matches previous section) -> Blue -> Dark (matches next section) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-ubuntu-blue to-midnight-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-midnight-black via-purple-900/10 to-midnight-black"></div>
 
         {/* Radial Spotlights for "Fog" effect */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
@@ -110,7 +110,7 @@ const AboutSection = () => {
             Quem Somos
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl text-soft-neon-glow/90 max-w-3xl mx-auto font-body font-light"
+            className="text-lg md:text-xl text-soft-neon-glow/80 max-w-3xl mx-auto font-body font-light"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -151,4 +151,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-

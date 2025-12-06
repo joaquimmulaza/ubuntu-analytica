@@ -26,8 +26,15 @@
 
   /* Colors - Support */
   --color-midnight-black: #050505;
+  --color-midnight-black-rgb: 5 5 5;
   --color-white: #FFFFFF;
+  --color-white-rgb: 255 255 255;
   --color-soft-neon-glow: #C5C9FF;
+  --color-soft-neon-glow-rgb: 197 201 255;
+
+  /* Surface Colors */
+  --color-surface: #161b22;
+  --color-surface-rgb: 22 27 34;
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #3F45FF 0%, #5721C6 100%);
@@ -77,9 +84,13 @@
 
   /* Colors - Background & Surface */
   --color-midnight-black: #F8F9FA;
+  --color-midnight-black-rgb: 248 249 250;
   --color-white: #1A1D29;
+  --color-white-rgb: 26 29 41;
   --color-soft-neon-glow: #4A5568;
+  --color-soft-neon-glow-rgb: 74 85 104;
   --color-surface: #FFFFFF;
+  --color-surface-rgb: 255 255 255;
   --color-surface-secondary: #E9ECEF;
   --color-border-light: rgba(63, 69, 255, 0.15);
   --color-border-medium: rgba(63, 69, 255, 0.25);

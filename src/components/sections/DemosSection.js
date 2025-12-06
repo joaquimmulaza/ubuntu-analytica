@@ -50,7 +50,7 @@ const DemosSection = () => {
         orb2Position="bottom-1/4 -right-20"
         gradientFrom="from-midnight-black"
         gradientVia="via-indigo-900/10"
-        gradientTo="to-black"
+        gradientTo="to-midnight-black"
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -65,7 +65,7 @@ const DemosSection = () => {
               {/* Prev Button */}
               <button
                 onClick={prevSlide}
-                className="absolute left-0 md:-left-12 z-20 p-2 rounded-full bg-midnight-black/60 hover:bg-electric-blue/20 backdrop-blur-neon transition-all duration-300 border border-soft-neon-glow/30 hover:border-electric-blue/60 hover:shadow-glow-soft"
+                className="absolute left-0 md:-left-12 z-20 p-2 rounded-full bg-surface/60 hover:bg-electric-blue/20 backdrop-blur-neon transition-all duration-300 border border-soft-neon-glow/30 hover:border-electric-blue/60 hover:shadow-glow-soft"
               >
                 <svg className="w-6 h-6 text-electric-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -92,7 +92,7 @@ const DemosSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
 
                       <div className="absolute bottom-0 left-0 w-full p-6">
-                        <h3 className="text-xl font-heading font-extrabold mb-4 line-clamp-2">{demo.title}</h3>
+                        <h3 className="text-xl font-heading font-extrabold mb-4 line-clamp-2 text-white">{demo.title}</h3>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -111,7 +111,7 @@ const DemosSection = () => {
               {/* Next Button */}
               <button
                 onClick={nextSlide}
-                className="absolute right-0 md:-right-12 z-20 p-2 rounded-full bg-midnight-black/60 hover:bg-electric-blue/20 backdrop-blur-neon transition-all duration-300 border border-soft-neon-glow/30 hover:border-electric-blue/60 hover:shadow-glow-soft"
+                className="absolute right-0 md:-right-12 z-20 p-2 rounded-full bg-surface/60 hover:bg-electric-blue/20 backdrop-blur-neon transition-all duration-300 border border-soft-neon-glow/30 hover:border-electric-blue/60 hover:shadow-glow-soft"
               >
                 <svg className="w-6 h-6 text-electric-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -119,12 +119,12 @@ const DemosSection = () => {
               </button>
             </div>
           ) : (
-            <div className="text-center text-gray-400">Carregando demos...</div>
+            <div className="text-center text-soft-neon-glow/70">Carregando demos...</div>
           )}
         </div>
 
         {/* CTA Card - Separated for better spacing */}
-        <div className="relative rounded-xl overflow-hidden bg-midnight-black/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto">
+        <div className="relative rounded-xl overflow-hidden bg-surface/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto">
           <div className="relative z-10 py-8 px-6 text-center">
             <h3 className="text-2xl md:text-3xl font-heading font-extrabold mb-3">
               Quer ver uma demo personalizada?

@@ -15,16 +15,18 @@ module.exports = {
 
         // Dynamic colors that change with theme
         'theme': {
-          'bg': 'var(--color-midnight-black)',
-          'text': 'var(--color-white)',
-          'secondary': 'var(--color-soft-neon-glow)',
-          'surface': 'var(--color-surface, var(--color-midnight-black))',
+          'bg': 'rgb(var(--color-midnight-black-rgb) / <alpha-value>)',
+          'text': 'rgb(var(--color-white-rgb) / <alpha-value>)',
+          'secondary': 'rgb(var(--color-soft-neon-glow-rgb) / <alpha-value>)',
+          'surface': 'rgb(var(--color-surface-rgb) / <alpha-value>)',
         },
 
-        // Support Colors (for dark mode)
-        'midnight-black': '#050505',
-        'ubuntu-blue': '#0D1E2C',
-        'soft-neon-glow': '#C5C9FF',
+        // Support Colors (Mapped to Theme Variables for auto-switching)
+        'midnight-black': 'rgb(var(--color-midnight-black-rgb) / <alpha-value>)',
+        'white': 'rgb(var(--color-white-rgb) / <alpha-value>)',
+        'ubuntu-blue': '#0D1E2C', // Static
+        'soft-neon-glow': 'rgb(var(--color-soft-neon-glow-rgb) / <alpha-value>)',
+        'surface': 'rgb(var(--color-surface-rgb) / <alpha-value>)',
 
         // Gradient stops for utilities
         'neon': {
@@ -53,7 +55,7 @@ module.exports = {
         'gradient-primary': 'linear-gradient(135deg, #3F45FF 0%, #5721C6 100%)',
         'gradient-secondary': 'linear-gradient(90deg, #3F45FF 0%, #FF5F4D 100%)',
         'gradient-tertiary': 'linear-gradient(180deg, #5721C6 0%, #FF5F4D 100%)',
-        'gradient-radial-neon': 'radial-gradient(circle, #3F45FF 0%, #5721C6 50%, #050505 100%)',
+        'gradient-radial-neon': 'var(--gradient-radial-neon)',
       },
 
       // Neon Glow Shadows

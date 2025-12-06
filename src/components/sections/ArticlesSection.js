@@ -93,7 +93,7 @@ const ArticlesSection = () => {
                     {!isLoading && articles.map((article, index) => (
                         <motion.div
                             key={article._id}
-                            className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] max-w-md bg-midnight-black/80 border border-soft-neon-glow/30 rounded-neon p-8 flex flex-col hover:border-electric-blue/60 transition-all duration-300 backdrop-blur-neon hover:shadow-glow-medium"
+                            className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] max-w-md bg-surface/80 border border-soft-neon-glow/30 rounded-neon p-8 flex flex-col hover:border-electric-blue/60 transition-all duration-300 backdrop-blur-neon hover:shadow-glow-medium"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -127,7 +127,7 @@ const ArticlesSection = () => {
                 </div>
 
                 <motion.div
-                    className="bg-midnight-black/80 border border-soft-neon-glow/30 rounded-2xl p-12 text-center max-w-3xl mx-auto backdrop-blur-neon shadow-glow-soft"
+                    className="bg-surface/80 border border-soft-neon-glow/30 rounded-2xl p-12 text-center max-w-3xl mx-auto backdrop-blur-neon shadow-glow-soft"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}

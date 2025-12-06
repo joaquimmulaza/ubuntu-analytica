@@ -93,12 +93,12 @@ const ServicesSection = () => {
               animate="rest"
               variants={{
                 rest: {
-                  backgroundColor: "rgba(255, 255, 255, 0)",
-                  borderColor: "rgba(255, 255, 255, 0)",
+                  backgroundColor: "rgba(0, 0, 0, 0)",
+                  borderColor: "rgba(0, 0, 0, 0)",
                   y: 0
                 },
                 hover: {
-                  backgroundColor: "rgba(22, 27, 34, 0.8)",
+                  backgroundColor: "rgba(var(--color-surface-rgb), 0.8)",
                   borderColor: "rgba(63, 69, 255, 0.3)",
                   y: -10,
                   boxShadow: "0 0 30px rgba(63, 69, 255, 0.15)",
@@ -120,7 +120,7 @@ const ServicesSection = () => {
 
               {/* Icon Box */}
               <motion.div
-                className="w-20 h-20 bg-midnight-black/60 backdrop-blur-neon rounded-neon flex items-center justify-center mb-4 border border-soft-neon-glow/30 z-10"
+                className="w-20 h-20 bg-surface/60 backdrop-blur-neon rounded-neon flex items-center justify-center mb-4 border border-soft-neon-glow/30 z-10"
                 variants={{
                   rest: { borderColor: "rgba(197, 201, 255, 0.3)", scale: 1 },
                   hover: { borderColor: "rgba(63, 69, 255, 0.8)", scale: 1.05, boxShadow: "0 0 20px rgba(63, 69, 255, 0.3)" }
@@ -142,7 +142,7 @@ const ServicesSection = () => {
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <p className="text-sm text-soft-neon-glow/70 leading-relaxed font-body">
+                <p className="text-sm text-soft-neon-glow leading-relaxed font-body">
                   {step.description}
                 </p>
               </motion.div>
@@ -161,7 +161,7 @@ const ServicesSection = () => {
 
         {/* Pronto para começar? CTA Card */}
         <motion.div
-          className="mt-16 relative rounded-xl overflow-hidden bg-midnight-black/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto"
+          className="mt-16 relative rounded-xl overflow-hidden bg-surface/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

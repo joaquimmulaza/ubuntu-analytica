@@ -1,14 +1,13 @@
 /* Ubuntu Analytica - Neon Edition Team Card Styles */
 
 .team-card {
-  background: rgba(5, 5, 5, 0.8);
-  /* Midnight Black with transparency */
+  background: rgba(var(--color-surface-rgb), 0.8);
   backdrop-filter: blur(16px) saturate(180%);
-  color: white;
+  color: var(--color-white);
   padding: 2rem;
   border-radius: 1rem;
   /* Neon border radius */
-  border: 1px solid rgba(197, 201, 255, 0.3);
+  border: 1px solid rgba(var(--color-soft-neon-glow-rgb), 0.3);
   /* Soft Neon Glow border */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;

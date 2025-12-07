@@ -73,13 +73,13 @@ const BackgroundEffect = ({
                     },
                     particles: {
                         color: {
-                            value: isLight ? ["#8084FF", "#A071E5", "#FF9F94"] : ["#3F45FF", "#5721C6", "#FF5F4D"],
+                            value: ["#3F45FF", "#5721C6", "#FF5F4D"],
                         },
                         links: {
-                            color: isLight ? "#A5A9FF" : "#C5C9FF",
+                            color: isLight ? "#3F45FF" : "#C5C9FF",
                             distance: 150,
                             enable: true,
-                            opacity: isLight ? 0.15 : 0.2,
+                            opacity: isLight ? 0.4 : 0.2,
                             width: 1,
                         },
                         move: {
@@ -100,7 +100,7 @@ const BackgroundEffect = ({
                             value: 60,
                         },
                         opacity: {
-                            value: 0.3,
+                            value: isLight ? 0.6 : 0.3,
                         },
                         shape: {
                             type: "circle",

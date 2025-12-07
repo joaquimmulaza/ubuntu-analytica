@@ -40,8 +40,8 @@ const Header = () => {
         className="relative cursor-pointer transition-all duration-300 font-body font-semibold group"
       >
         <span className={`transition-colors duration-300 ${theme === 'light'
-            ? 'text-[#FFFFFF]'
-            : (isActive ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+          ? 'text-[#FFFFFF]'
+          : (isActive ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
           }`}>
           {children}
         </span>
@@ -71,8 +71,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${theme === 'light'
-          ? 'bg-electric-blue shadow-glow-soft'
-          : (scrolled ? 'bg-midnight-black/90 backdrop-blur-neon shadow-glow-soft border-b border-soft-neon-glow/20' : 'bg-transparent')
+        ? 'bg-ubuntu-blue shadow-glow-soft'
+        : (scrolled ? 'bg-midnight-black/90 backdrop-blur-neon shadow-glow-soft border-b border-soft-neon-glow/20' : 'bg-transparent')
         }`}
     >
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -93,8 +93,8 @@ const Header = () => {
           <RouterLink
             to="/candidaturas"
             className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
-                ? 'text-[#FFFFFF]'
-                : (location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+              ? 'text-[#FFFFFF]'
+              : (location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
               }`}
           >
             <span>Candidaturas</span>
@@ -133,8 +133,8 @@ const Header = () => {
             to="/candidaturas"
             onClick={() => setIsMenuOpen(false)}
             className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
-                ? 'text-[#FFFFFF]'
-                : (location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+              ? 'text-[#FFFFFF]'
+              : (location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
               }`}
           >
             <span>Candidaturas</span>

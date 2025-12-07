@@ -318,3 +318,15 @@ textarea::placeholder {
 .transition-entrance {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+/* Force title colors in light mode */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #0D1E2C !important;
+  background-image: none !important;
+  -webkit-text-fill-color: #0D1E2C !important;
+}

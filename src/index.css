@@ -85,8 +85,9 @@
   /* Colors - Background & Surface */
   --color-midnight-black: #F8F9FA;
   --color-midnight-black-rgb: 248 249 250;
-  --color-white: #1A1D29;
-  --color-white-rgb: 26 29 41;
+  --color-white: #0D1E2C;
+  /* Ubuntu Dark Blue */
+  --color-white-rgb: 13 30 44;
   --color-soft-neon-glow: #4A5568;
   --color-soft-neon-glow-rgb: 74 85 104;
   --color-surface: #FFFFFF;
@@ -141,6 +142,38 @@ code {
 /* Override bg-midnight-black to use theme variable */
 .bg-midnight-black {
   background-color: var(--color-midnight-black) !important;
+}
+
+/* Override bg-surface to use theme variable */
+.bg-surface {
+  background-color: var(--color-surface) !important;
+}
+
+/* Force white background for bg-surface in light mode */
+[data-theme="light"] .bg-surface {
+  background-color: #FFFFFF !important;
+}
+
+/* Force white text for gradient buttons in light mode */
+[data-theme="light"] .bg-gradient-primary,
+[data-theme="light"] .bg-gradient-secondary,
+[data-theme="light"] .bg-gradient-tertiary {
+  color: #FFFFFF !important;
+}
+
+/* Ensure button text stays white in light mode */
+[data-theme="light"] button.bg-gradient-primary,
+[data-theme="light"] a.bg-gradient-primary,
+[data-theme="light"] button.bg-gradient-secondary,
+[data-theme="light"] a.bg-gradient-secondary {
+  color: #FFFFFF !important;
+}
+
+/* Force white text for electric-blue buttons in light mode */
+[data-theme="light"] .bg-electric-blue,
+[data-theme="light"] button.bg-electric-blue,
+[data-theme="light"] a.bg-electric-blue {
+  color: #FFFFFF !important;
 }
 
 /* Sections should respect theme background */

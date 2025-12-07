@@ -24,11 +24,7 @@ const HeroSection = () => {
   };
   return (
     <section className="relative h-screen text-white overflow-hidden">
-      <BackgroundEffect
-        gradientFrom="from-midnight-black"
-        gradientVia="via-purple-900/20"
-        gradientTo="to-midnight-black"
-      />
+      <BackgroundEffect />
 
       <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center items-center text-center">
 

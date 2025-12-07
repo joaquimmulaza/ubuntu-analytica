@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundEffect from '../BackgroundEffect';
 
@@ -57,6 +57,19 @@ const steps = [
 ];
 
 const ServicesSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section id="processos" className="relative py-24 text-white overflow-hidden">
       {/* Background Image with Overlay */}
@@ -65,9 +78,6 @@ const ServicesSection = () => {
         orb2Color="bg-cyber-purple/5"
         orb1Position="bottom-20 left-20"
         orb2Position="top-20 right-20"
-        gradientFrom="from-midnight-black"
-        gradientVia="via-blue-900/10"
-        gradientTo="to-midnight-black"
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -87,32 +97,72 @@ const ServicesSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.id}
-              className="group relative flex flex-col items-center text-center w-full md:w-1/5 p-4 rounded-2xl transition-all duration-300"
-              initial="rest"
-              whileHover="hover"
-              animate="rest"
+              className="group relative flex flex-col items-center text-center w-full md:w-1/5 p-4 rounded-2xl mb-8 md:mb-0"
+              initial="collapsed"
+              whileInView={isMobile ? "expanded" : "collapsed"}
+              whileHover={!isMobile ? "hover" : undefined}
+              viewport={isMobile ? { once: false, amount: 0.5, margin: "-100px" } : undefined}
               variants={{
-                rest: {
+                collapsed: {
                   backgroundColor: "rgba(0, 0, 0, 0)",
                   borderColor: "rgba(0, 0, 0, 0)",
-                  y: 0
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    duration: 0.5,
+                    ease: "easeInOut"
+                  }
+                },
+                expanded: {
+                  backgroundColor: "rgba(var(--color-surface-rgb), 0.8)",
+                  borderColor: "rgba(63, 69, 255, 0.3)",
+                  y: -10,
+                  scale: 1.02,
+                  boxShadow: "0 0 30px rgba(63, 69, 255, 0.15)",
+                  backdropFilter: "blur(12px)",
+                  transition: {
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                  }
                 },
                 hover: {
                   backgroundColor: "rgba(var(--color-surface-rgb), 0.8)",
                   borderColor: "rgba(63, 69, 255, 0.3)",
                   y: -10,
+                  scale: 1.02,
                   boxShadow: "0 0 30px rgba(63, 69, 255, 0.15)",
-                  backdropFilter: "blur(12px)"
+                  backdropFilter: "blur(12px)",
+                  transition: {
+                    duration: 0.3
+                  }
                 }
               }}
-              style={{ border: '1px solid transparent' }} // Base border for transition
+              style={{ border: '1px solid transparent' }}
             >
               {/* Step Number Bubble */}
               <motion.div
                 className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center font-heading font-extrabold text-white mb-4 shadow-glow-soft z-10"
                 variants={{
-                  rest: { scale: 1 },
-                  hover: { scale: 1.1, boxShadow: "0 0 20px rgba(63, 69, 255, 0.6)" }
+                  collapsed: {
+                    scale: 1,
+                    boxShadow: "0 0 10px rgba(63, 69, 255, 0.3)",
+                    transition: { duration: 0.4 }
+                  },
+                  expanded: {
+                    scale: 1.1,
+                    boxShadow: "0 0 20px rgba(63, 69, 255, 0.6)",
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15,
+                      delay: index * 0.1 + 0.1
+                    }
+                  },
+                  hover: {
+                    scale: 1.1,
+                    boxShadow: "0 0 20px rgba(63, 69, 255, 0.6)"
+                  }
                 }}
               >
                 {step.id}
@@ -122,8 +172,28 @@ const ServicesSection = () => {
               <motion.div
                 className="w-20 h-20 bg-surface/60 backdrop-blur-neon rounded-neon flex items-center justify-center mb-4 border border-soft-neon-glow/30 z-10"
                 variants={{
-                  rest: { borderColor: "rgba(197, 201, 255, 0.3)", scale: 1 },
-                  hover: { borderColor: "rgba(63, 69, 255, 0.8)", scale: 1.05, boxShadow: "0 0 20px rgba(63, 69, 255, 0.3)" }
+                  collapsed: {
+                    borderColor: "rgba(197, 201, 255, 0.3)",
+                    scale: 1,
+                    boxShadow: "0 0 0px rgba(63, 69, 255, 0)",
+                    transition: { duration: 0.4 }
+                  },
+                  expanded: {
+                    borderColor: "rgba(63, 69, 255, 0.8)",
+                    scale: 1.05,
+                    boxShadow: "0 0 20px rgba(63, 69, 255, 0.3)",
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 12,
+                      delay: index * 0.1 + 0.2
+                    }
+                  },
+                  hover: {
+                    borderColor: "rgba(63, 69, 255, 0.8)",
+                    scale: 1.05,
+                    boxShadow: "0 0 20px rgba(63, 69, 255, 0.3)"
+                  }
                 }}
               >
                 <div className="text-electric-blue">
@@ -133,21 +203,46 @@ const ServicesSection = () => {
 
               <h3 className="text-xl font-heading font-extrabold mb-2 z-10">{step.title}</h3>
 
-              {/* Description Reveal */}
+              {/* Description - Animated reveal for both mobile and desktop */}
               <motion.div
                 className="overflow-hidden"
                 variants={{
-                  rest: { opacity: 0, height: 0, marginTop: 0 },
-                  hover: { opacity: 1, height: "auto", marginTop: 10 }
+                  collapsed: {
+                    opacity: 0,
+                    height: 0,
+                    marginTop: 0,
+                    transition: {
+                      duration: 0.4,
+                      ease: "easeInOut"
+                    }
+                  },
+                  expanded: {
+                    opacity: 1,
+                    height: "auto",
+                    marginTop: 10,
+                    transition: {
+                      duration: 0.5,
+                      delay: index * 0.1 + 0.3,
+                      ease: "easeOut"
+                    }
+                  },
+                  hover: {
+                    opacity: 1,
+                    height: "auto",
+                    marginTop: 10,
+                    transition: {
+                      duration: 0.3,
+                      ease: "easeOut"
+                    }
+                  }
                 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <p className="text-sm text-soft-neon-glow leading-relaxed font-body">
                   {step.description}
                 </p>
               </motion.div>
 
-              {/* Arrow (except for last item) - Positioned absolutely to not be affected by card growth */}
+              {/* Arrow (except for last item) */}
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-1/2 transform translate-x-1/2 -translate-y-full text-soft-neon-glow/20 pointer-events-none">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

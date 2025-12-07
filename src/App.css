@@ -71,7 +71,8 @@
   display: flex;
 }
 
-form {
+/* Careers Page Specific Form Styles */
+.careers-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -84,22 +85,22 @@ form {
   backdrop-filter: blur(16px);
 }
 
-.form-group {
+.careers-form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
 }
 
-label {
+.careers-label {
   margin-bottom: 8px;
   font-weight: 600;
   font-family: 'Mulish', sans-serif;
   color: #C5C9FF;
 }
 
-input,
-textarea {
+.careers-input,
+.careers-textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid rgba(197, 201, 255, 0.3);
@@ -111,19 +112,19 @@ textarea {
   transition: all 0.3s ease;
 }
 
-input:focus,
-textarea:focus {
+.careers-input:focus,
+.careers-textarea:focus {
   outline: none;
   border-color: #3F45FF;
   box-shadow: 0 0 20px rgba(63, 69, 255, 0.3);
 }
 
-input::placeholder,
-textarea::placeholder {
+.careers-input::placeholder,
+.careers-textarea::placeholder {
   color: rgba(197, 201, 255, 0.5);
 }
 
-textarea {
+.careers-textarea {
   min-height: 100px;
   resize: vertical;
 }
@@ -132,7 +133,7 @@ textarea {
    Buttons
    ============================================ */
 
-button[type="submit"] {
+.careers-submit-btn {
   background: linear-gradient(135deg, #3F45FF 0%, #5721C6 100%);
   color: white;
   border: none;
@@ -146,12 +147,12 @@ button[type="submit"] {
   box-shadow: 0 0 20px rgba(63, 69, 255, 0.4);
 }
 
-button[type="submit"]:hover {
+.careers-submit-btn:hover {
   box-shadow: 0 0 30px rgba(63, 69, 255, 0.6), 0 0 60px rgba(87, 33, 198, 0.4);
   transform: translateY(-2px);
 }
 
-button[type="submit"]:disabled {
+.careers-submit-btn:disabled {
   background: rgba(197, 201, 255, 0.2);
   cursor: not-allowed;
   box-shadow: none;

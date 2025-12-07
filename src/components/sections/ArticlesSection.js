@@ -49,9 +49,6 @@ const ArticlesSection = () => {
                 orb2Color="bg-neon-coral/5"
                 orb1Position="top-20 left-20"
                 orb2Position="bottom-20 right-20"
-                gradientFrom="from-midnight-black"
-                gradientVia="via-purple-900/10"
-                gradientTo="to-midnight-black"
             />
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">

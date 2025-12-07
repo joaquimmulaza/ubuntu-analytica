@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 const Header = () => {
+  const { theme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -37,7 +39,10 @@ const Header = () => {
         onSetActive={() => setActiveSection(to)}
         className="relative cursor-pointer transition-all duration-300 font-body font-semibold group"
       >
-        <span className={`transition-colors duration-300 ${isActive ? 'text-electric-blue' : 'text-white hover:text-electric-blue'}`}>
+        <span className={`transition-colors duration-300 ${theme === 'light'
+            ? 'text-[#FFFFFF]'
+            : (isActive ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+          }`}>
           {children}
         </span>
         <span
@@ -51,7 +56,8 @@ const Header = () => {
         to={`/#${to}`}
         className="relative transition-all duration-300 font-body font-semibold group"
       >
-        <span className="text-white hover:text-electric-blue transition-colors duration-300">
+        <span className={`transition-colors duration-300 ${theme === 'light' ? 'text-[#FFFFFF]' : 'text-white hover:text-electric-blue'
+          }`}>
           {children}
         </span>
         <span
@@ -64,7 +70,9 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-midnight-black/90 backdrop-blur-neon shadow-glow-soft border-b border-soft-neon-glow/20' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${theme === 'light'
+          ? 'bg-electric-blue shadow-glow-soft'
+          : (scrolled ? 'bg-midnight-black/90 backdrop-blur-neon shadow-glow-soft border-b border-soft-neon-glow/20' : 'bg-transparent')
         }`}
     >
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -84,7 +92,10 @@ const Header = () => {
           <NavLink to="artigos">Artigos</NavLink>
           <RouterLink
             to="/candidaturas"
-            className={`relative transition-all duration-300 font-body font-semibold group ${location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue'}`}
+            className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
+                ? 'text-[#FFFFFF]'
+                : (location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+              }`}
           >
             <span>Candidaturas</span>
             <span
@@ -110,7 +121,8 @@ const Header = () => {
         </div>
       </div>
       {/* Mobile Menu */}
-      <div className={`absolute top-full left-0 w-full bg-midnight-black/95 backdrop-blur-neon md:hidden transition-all duration-300 ease-in-out border-b border-soft-neon-glow/20 ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+      <div className={`absolute top-full left-0 w-full backdrop-blur-neon md:hidden transition-all duration-300 ease-in-out border-b border-soft-neon-glow/20 ${theme === 'light' ? 'bg-electric-blue' : 'bg-midnight-black/95'
+        } ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <nav className="flex flex-col items-center space-y-4 p-6 text-white">
           <NavLink to="home">Home</NavLink>
           <NavLink to="processos">Processos</NavLink>
@@ -120,7 +132,10 @@ const Header = () => {
           <RouterLink
             to="/candidaturas"
             onClick={() => setIsMenuOpen(false)}
-            className={`relative transition-all duration-300 font-body font-semibold group ${location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue'}`}
+            className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
+                ? 'text-[#FFFFFF]'
+                : (location.pathname === '/candidaturas' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+              }`}
           >
             <span>Candidaturas</span>
           </RouterLink>

@@ -41,7 +41,7 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Left Column - Form */}
           <motion.div
-            className="bg-surface/80 p-8 rounded-neon border border-white/10 backdrop-blur-md shadow-glow-soft relative overflow-hidden"
+            className="bg-surface p-8 rounded-neon border border-white/10 shadow-glow-soft relative overflow-hidden"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ const ContactSection = () => {
                   <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Nome *</label>
                   <input
                     type="text"
-                    className="w-full bg-midnight-black/5 border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
+                    className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                     placeholder="Seu nome"
                   />
                 </div>
@@ -72,7 +72,7 @@ const ContactSection = () => {
                   <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Email *</label>
                   <input
                     type="email"
-                    className="w-full bg-midnight-black/5 border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
+                    className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -82,7 +82,7 @@ const ContactSection = () => {
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Empresa</label>
                 <input
                   type="text"
-                  className="w-full bg-midnight-black/5 border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
+                  className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                   placeholder="Sua empresa"
                 />
               </div>
@@ -91,7 +91,7 @@ const ContactSection = () => {
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Telefone (opcional)</label>
                 <input
                   type="tel"
-                  className="w-full bg-midnight-black/5 border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
+                  className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                   placeholder="+244 ..."
                 />
               </div>
@@ -100,7 +100,7 @@ const ContactSection = () => {
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Mensagem *</label>
                 <textarea
                   rows="4"
-                  className="w-full bg-midnight-black/5 border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
+                  className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                   placeholder="Como podemos ajudar?"
                 ></textarea>
               </div>

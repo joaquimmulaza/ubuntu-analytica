@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
+import { useTheme } from '../context/ThemeContext';
 
 const BackgroundEffect = ({
     orb1Color = "bg-purple-500/5",
@@ -9,11 +10,19 @@ const BackgroundEffect = ({
     orb2Position = "bottom-20 right-20",
     orb1Blur = "blur-3xl",
     orb2Blur = "blur-3xl",
-    gradientFrom = "from-midnight-black",
-    gradientVia = "via-purple-900/10",
-    gradientTo = "to-midnight-black",
+    gradientFrom,
+    gradientVia,
+    gradientTo,
     className = ""
 }) => {
+    const { theme } = useTheme();
+    const isLight = theme === 'light';
+
+    // Set defaults based on theme if not provided
+    const effectiveGradientFrom = gradientFrom || (isLight ? "from-midnight-black" : "from-midnight-black");
+    const effectiveGradientVia = gradientVia || (isLight ? "via-electric-blue/5" : "via-purple-900/10");
+    const effectiveGradientTo = gradientTo || (isLight ? "to-midnight-black" : "to-midnight-black");
+
     const particlesInit = useCallback(async engine => {
         await loadSlim(engine);
     }, []);
@@ -21,7 +30,7 @@ const BackgroundEffect = ({
     return (
         <div className={`absolute inset-0 z-0 overflow-hidden bg-midnight-black ${className}`}>
             {/* Linear Gradient Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-b ${gradientFrom} ${gradientVia} ${gradientTo}`}></div>
+            <div className={`absolute inset-0 bg-gradient-to-b ${effectiveGradientFrom} ${effectiveGradientVia} ${effectiveGradientTo}`}></div>
 
             {/* Orbs */}
             <div className={`absolute ${orb1Position} w-96 h-96 ${orb1Color} rounded-full ${orb1Blur}`}></div>
@@ -64,13 +73,13 @@ const BackgroundEffect = ({
                     },
                     particles: {
                         color: {
-                            value: ["#3F45FF", "#5721C6", "#FF5F4D"],
+                            value: isLight ? ["#8084FF", "#A071E5", "#FF9F94"] : ["#3F45FF", "#5721C6", "#FF5F4D"],
                         },
                         links: {
-                            color: "#C5C9FF",
+                            color: isLight ? "#A5A9FF" : "#C5C9FF",
                             distance: 150,
                             enable: true,
-                            opacity: 0.2,
+                            opacity: isLight ? 0.15 : 0.2,
                             width: 1,
                         },
                         move: {

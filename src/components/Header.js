@@ -121,7 +121,7 @@ const Header = () => {
         </div>
       </div>
       {/* Mobile Menu */}
-      <div className={`absolute top-full left-0 w-full backdrop-blur-neon md:hidden transition-all duration-300 ease-in-out border-b border-soft-neon-glow/20 ${theme === 'light' ? 'bg-electric-blue' : 'bg-midnight-black/95'
+      <div className={`absolute top-full left-0 w-full backdrop-blur-neon md:hidden transition-all duration-300 ease-in-out border-b border-soft-neon-glow/20 ${theme === 'light' ? 'bg-ubuntu-blue' : 'bg-midnight-black/95'
         } ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <nav className="flex flex-col items-center space-y-4 p-6 text-white">
           <NavLink to="home">Home</NavLink>
@@ -141,26 +141,7 @@ const Header = () => {
           </RouterLink>
           <NavLink to="contactos">Contactos</NavLink>
 
-          {/* CTA Button - Mobile */}
-          {isHomePage ? (
-            <ScrollLink
-              to="contactos"
-              smooth={true}
-              duration={500}
-              onClick={() => setIsMenuOpen(false)}
-              className="bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-2.5 px-8 rounded-full transition-all duration-300 shadow-glow-soft cursor-pointer text-sm mt-2"
-            >
-              Começar
-            </ScrollLink>
-          ) : (
-            <RouterLink
-              to="/#contactos"
-              onClick={() => setIsMenuOpen(false)}
-              className="bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-2.5 px-8 rounded-full transition-all duration-300 shadow-glow-soft text-sm mt-2"
-            >
-              Começar
-            </RouterLink>
-          )}
+
 
           {/* Theme Toggle - Mobile */}
           <div className="mt-4">

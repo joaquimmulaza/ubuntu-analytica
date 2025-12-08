@@ -30,18 +30,6 @@ const Footer = () => {
           {/* Column 1 - Brand */}
           <div className="space-y-6">
             <img src="/img/logo_branco.png" alt="Ubuntu Analytica Logo" className="h-12" />
-            <p className="text-[#FFFFFF]/60 text-sm font-body leading-relaxed">
-              Data Intelligence para a Lusofonia
-            </p>
-            <a
-              href="mailto:contacto@ubuntu-analytica.com"
-              className="flex items-center text-[#FFFFFF]/60 hover:text-[#FFFFFF] transition-all duration-300 text-sm font-body group"
-            >
-              <svg className="w-4 h-4 mr-2 text-electric-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-              contacto@ubuntu-analytica.com
-            </a>
           </div>
 
           {/* Column 2 - Links Principais */}
@@ -53,7 +41,7 @@ const Footer = () => {
               <NavLink to="home">Home</NavLink>
               <NavLink to="processos">Processos</NavLink>
               <NavLink to="demos">Demos</NavLink>
-              <NavLink to="quem-somos">Equipa</NavLink>
+              <NavLink to="quem-somos">Quem Somos</NavLink>
               <NavLink to="artigos">Artigos</NavLink>
               <NavLink to="contactos">Contactos</NavLink>
             </nav>

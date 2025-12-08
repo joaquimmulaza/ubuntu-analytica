@@ -67,7 +67,7 @@ const ArticlesSection = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                     >
-                        Publicações sobre BI, dados e transformação digital para empresas lusófonas
+                        Publicações sobre BI, dados e transformação digital para empresas
                     </motion.p>
                 </div>
 
@@ -82,7 +82,7 @@ const ArticlesSection = () => {
                     {/* Se não houver artigos no Sanity, avisa */}
                     {!isLoading && articles.length === 0 && (
                         <div className="w-full text-center text-neon-coral font-body">
-                            Ainda não há artigos publicados no Sanity.
+                            Ainda não há artigos publicados.
                         </div>
                     )}
 
@@ -122,18 +122,6 @@ const ArticlesSection = () => {
                         </motion.div>
                     ))}
                 </div>
-
-                <motion.div
-                    className="bg-surface/80 border border-soft-neon-glow/30 rounded-2xl p-12 text-center max-w-3xl mx-auto backdrop-blur-neon shadow-glow-soft"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                >
-                    <h3 className="text-2xl font-heading font-extrabold mb-2">Ubuntu Analytica</h3>
-                    <p className="text-electric-blue font-body text-sm tracking-wider">
-                        Data Intelligence para a Lusofonia
-                    </p>
-                </motion.div>
             </div>
         </section>
     );

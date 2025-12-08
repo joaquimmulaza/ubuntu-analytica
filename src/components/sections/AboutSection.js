@@ -9,7 +9,7 @@ const founders = [
     linkedin: "https://www.linkedin.com/in/alberto-pedro-a39a67151/"
   },
   {
-    name: "João Baptista",
+    name: "João Diassiwa",
     role: "CFO",
     image: "/img/team/joao-baptista.webp", // Placeholder
     linkedin: "linkedin.com/in/joão-diassiwa28"

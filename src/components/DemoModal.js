@@ -102,7 +102,7 @@ const DemoModal = ({ demo, onClose }) => {
                     {/* Details Section */}
                     <div className="w-full md:w-1/3 p-8 flex flex-col bg-[#1A1A1A] text-white overflow-y-auto">
                         <div className="flex justify-between items-start mb-6">
-                            <h2 className="text-2xl font-bold leading-tight">{demo.title}</h2>
+                            <div className="text-2xl font-bold leading-tight text-white">{demo.title}</div>
                             <button
                                 className="hidden md:block text-gray-400 hover:text-white transition-colors"
                                 onClick={onClose}

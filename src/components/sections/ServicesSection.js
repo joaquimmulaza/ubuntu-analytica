@@ -58,6 +58,8 @@ const steps = [
 
 const ServicesSection = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [activeStep, setActiveStep] = useState(null);
+  const stepRefs = React.useRef([]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -69,6 +71,47 @@ const ServicesSection = () => {
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleScroll = () => {
+      const center = window.innerHeight / 2;
+      let minDiff = Infinity;
+      let closestId = null;
+
+      stepRefs.current.forEach((ref, index) => {
+        if (!ref) return;
+        const rect = ref.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        const diff = Math.abs(center - elementCenter);
+
+        // Simple visibility check: is it somewhat on screen?
+        // Actually, just taking the closest to center is robust for "focus".
+        // Use a threshold to ensure it's actually visible?
+        // If the closest one is way off screen (e.g. top of page), we might not want to highlight any?
+        // But usually in a scroll flow, something is always 'closest'.
+        // Let's maximize the experience by just picking the closest.
+
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestId = steps[index].id;
+        }
+      });
+
+      // Optional: Only activate if within a certain range of center?
+      // For now, simple closest is good.
+      if (closestId !== activeStep) {
+        setActiveStep(closestId);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile, activeStep]);
 
   return (
     <section id="processos" className="relative py-24 text-white overflow-hidden">
@@ -97,11 +140,11 @@ const ServicesSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.id}
+              ref={el => stepRefs.current[index] = el}
               className="group relative flex flex-col items-center text-center w-full md:w-1/5 p-4 rounded-2xl mb-8 md:mb-0"
               initial="collapsed"
-              whileInView={isMobile ? "expanded" : "collapsed"}
+              animate={isMobile ? (activeStep === step.id ? "expanded" : "collapsed") : "collapsed"}
               whileHover={!isMobile ? "hover" : undefined}
-              viewport={isMobile ? { once: false, amount: 0.5, margin: "-100px" } : undefined}
               variants={{
                 collapsed: {
                   backgroundColor: "rgba(0, 0, 0, 0)",
@@ -122,7 +165,6 @@ const ServicesSection = () => {
                   backdropFilter: "blur(12px)",
                   transition: {
                     duration: 0.6,
-                    delay: index * 0.1,
                     ease: "easeOut"
                   }
                 },
@@ -155,8 +197,7 @@ const ServicesSection = () => {
                     transition: {
                       type: "spring",
                       stiffness: 200,
-                      damping: 15,
-                      delay: index * 0.1 + 0.1
+                      damping: 15
                     }
                   },
                   hover: {
@@ -185,8 +226,7 @@ const ServicesSection = () => {
                     transition: {
                       type: "spring",
                       stiffness: 150,
-                      damping: 12,
-                      delay: index * 0.1 + 0.2
+                      damping: 12
                     }
                   },
                   hover: {
@@ -222,7 +262,6 @@ const ServicesSection = () => {
                     marginTop: 10,
                     transition: {
                       duration: 0.5,
-                      delay: index * 0.1 + 0.3,
                       ease: "easeOut"
                     }
                   },

@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
+import { useTheme } from '../../context/ThemeContext';
 
 const HeroSection = () => {
   const location = useLocation();
+  const { theme } = useTheme();
   const isHomePage = location.pathname === '/';
 
 
@@ -50,7 +52,7 @@ const HeroSection = () => {
             </NavLink>
             <NavLink
               to="demos"
-              className="w-56 bg-transparent border-2 border-soft-neon-glow/50 hover:border-electric-blue text-white font-body font-semibold py-[10px] px-[30px] rounded-full transition-all duration-300 flex items-center justify-center hover:shadow-glow-soft hover:bg-electric-blue/10 cursor-pointer"
+              className={`w-56 bg-transparent border-2 border-soft-neon-glow/50 hover:border-electric-blue ${theme === 'light' ? 'text-ubuntu-blue' : 'text-white'} font-body font-semibold py-[10px] px-[30px] rounded-full transition-all duration-300 flex items-center justify-center hover:shadow-glow-soft hover:bg-electric-blue/10 cursor-pointer`}
             >
               <span className="mr-2">▷</span> Ver Demos
             </NavLink>

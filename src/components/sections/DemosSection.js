@@ -92,7 +92,7 @@ const DemosSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
 
                       <div className="absolute bottom-0 left-0 w-full p-6">
-                        <h3 className="text-xl font-heading font-extrabold mb-4 line-clamp-2 text-white">{demo.title}</h3>
+                        <div role="heading" aria-level="3" className="text-xl font-heading font-extrabold mb-4 line-clamp-2" style={{ color: '#FFFFFF' }}>{demo.title}</div>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();

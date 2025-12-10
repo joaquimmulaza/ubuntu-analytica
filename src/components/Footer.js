@@ -34,9 +34,9 @@ const Footer = () => {
 
           {/* Column 2 - Links Principais */}
           <div>
-            <h3 className="font-heading font-extrabold mb-6 text-[#FFFFFF] text-sm uppercase tracking-wider">
+            <p className="font-heading font-extrabold mb-6 text-[#FFFFFF] text-sm uppercase tracking-wider">
               Links Principais
-            </h3>
+            </p>
             <nav className="flex flex-col space-y-3">
               <NavLink to="home">Home</NavLink>
               <NavLink to="processos">Processos</NavLink>
@@ -49,9 +49,9 @@ const Footer = () => {
 
           {/* Column 3 - Localizações */}
           <div>
-            <h3 className="font-heading font-extrabold mb-6 text-[#FFFFFF] text-sm uppercase tracking-wider">
+            <p className="font-heading font-extrabold mb-6 text-[#FFFFFF] text-sm uppercase tracking-wider">
               Localizações
-            </h3>
+            </p>
             <div className="flex flex-col space-y-4">
               <div className="flex items-start group">
                 <svg className="w-4 h-4 mr-3 mt-0.5 text-electric-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,9 +72,9 @@ const Footer = () => {
 
           {/* Column 4 - Conectar-se */}
           <div>
-            <h3 className="font-heading font-extrabold mb-6 text-[#FFFFFF] text-sm uppercase tracking-wider">
+            <p className="font-heading font-extrabold mb-6 text-[#FFFFFF] text-sm uppercase tracking-wider">
               Conectar-se
-            </h3>
+            </p>
             <div className="space-y-6">
               {/* Social Icons */}
               <div className="flex space-x-4">

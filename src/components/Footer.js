@@ -39,6 +39,7 @@ const Footer = () => {
             </p>
             <nav className="flex flex-col space-y-3">
               <NavLink to="home">Home</NavLink>
+              <NavLink to="servicos">Serviços</NavLink>
               <NavLink to="processos">Processos</NavLink>
               <NavLink to="demos">Demos</NavLink>
               <NavLink to="quem-somos">Quem Somos</NavLink>

@@ -2,16 +2,24 @@ import React from 'react';
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import ServicesSection from '../components/sections/ServicesSection';
+import ServicesGridSection from '../components/sections/ServicesGridSection';
 import ContactSection from '../components/sections/ContactSection';
 import DemosSection from '../components/sections/DemosSection';
 import ArticlesSection from '../components/sections/ArticlesSection';
 import { Element } from 'react-scroll';
 
+import { useTheme } from '../context/ThemeContext';
+
 const HomePage = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className="bg-midnight-black">
+    <div className={`transition-colors duration-300 ${theme === 'light' ? 'bg-white' : 'bg-midnight-black'}`}>
       <Element name="home">
         <HeroSection />
+      </Element>
+      <Element name="servicos">
+        <ServicesGridSection />
       </Element>
       <Element name="processos">
         <ServicesSection />

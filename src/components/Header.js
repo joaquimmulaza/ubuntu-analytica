@@ -86,6 +86,7 @@ const Header = () => {
         {/* Centered Navigation */}
         <nav className="hidden md:flex items-center space-x-8 font-light text-sm text-white flex-1 justify-center">
           <NavLink to="home">Home</NavLink>
+          <NavLink to="servicos">Serviços</NavLink>
           <NavLink to="processos">Processos</NavLink>
           <NavLink to="demos">Demos</NavLink>
           <NavLink to="quem-somos">Quem Somos</NavLink>
@@ -125,6 +126,7 @@ const Header = () => {
         } ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <nav className="flex flex-col items-center space-y-4 p-6 text-white">
           <NavLink to="home">Home</NavLink>
+          <NavLink to="servicos">Serviços</NavLink>
           <NavLink to="processos">Processos</NavLink>
           <NavLink to="demos">Demos</NavLink>
           <NavLink to="quem-somos">Quem Somos</NavLink>

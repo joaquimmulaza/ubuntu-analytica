@@ -130,7 +130,7 @@ const DemosSection = () => {
               Quer ver uma demo personalizada?
             </h3>
             <p className="text-soft-neon-glow/80 mb-6 max-w-xl mx-auto font-body text-base">
-              Agende uma sessão de 30 minutos para explorarmos como estas<br />
+              Agende uma sessão para explorarmos como estas<br />
               soluções se aplicam ao seu negócio específico
             </p>
             <Link

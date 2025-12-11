@@ -107,12 +107,12 @@ const ServiceCard = ({ service, index }) => {
             {/* Content Container */}
             <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 {/* Title */}
-                <h3 className="text-2xl font-heading font-bold !text-white mb-2 relative z-10 transform transition-transform duration-500 group-hover:-translate-y-2 drop-shadow-md">
+                <h3 className="text-2xl font-heading font-bold !text-[#ffffff] mb-2 relative z-10 transform transition-transform duration-500 group-hover:-translate-y-2 drop-shadow-md">
                     {service.title}
                 </h3>
 
                 {/* Short Description */}
-                <p className="text-base !text-white/90 font-body mb-4 relative z-10  transition-colors duration-300 drop-shadow-md">
+                <p className="text-base !text-[#ffffff]/90 font-body mb-4 relative z-10  transition-colors duration-300 drop-shadow-md">
                     {service.shortDesc}
                 </p>
 
@@ -120,10 +120,10 @@ const ServiceCard = ({ service, index }) => {
                 <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
                     <div className="overflow-hidden">
                         <div className="pt-4 border-t border-electric-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-                            <p className="text-sm text-white/90 font-body leading-relaxed drop-shadow-sm">
+                            <p className="text-sm !text-[#ffffff]/90 font-body leading-relaxed drop-shadow-sm">
                                 {service.longDesc}
                             </p>
-                            <div className="mt-4 flex items-center text-electric-blue text-sm font-semibold drop-shadow-md">
+                            <div className="mt-4 flex items-center text-neon-coral text-sm font-semibold drop-shadow-md">
                                 Saber mais
                                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

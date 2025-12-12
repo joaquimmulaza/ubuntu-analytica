@@ -1,8 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
 import BackgroundEffect from '../BackgroundEffect';
 import { useTheme } from '../../context/ThemeContext';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const services = [
     {
@@ -57,7 +64,7 @@ const ServicesGridSection = () => {
             />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
+                <div className="text-center mb-12">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -76,10 +83,49 @@ const ServicesGridSection = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
-                        <ServiceCard key={service.id} service={service} index={index} />
-                    ))}
+                <div className="relative w-full px-4 md:px-12"> {/* Added Padding for Buttons */}
+
+                    {/* Custom Previous Button */}
+                    <button className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-[#F8F9FA] hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer flex items-center justify-center">
+                        <svg className="w-6 h-6 text-electric-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+
+                    {/* Custom Next Button */}
+                    <button className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-[#F8F9FA] hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer flex items-center justify-center">
+                        <svg className="w-6 h-6 text-electric-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <Swiper
+                        modules={[Pagination, Navigation]}
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        pagination={{ clickable: true, dynamicBullets: true }}
+                        navigation={{
+                            nextEl: '.swiper-button-next-custom',
+                            prevEl: '.swiper-button-prev-custom',
+                        }}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 20,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 24,
+                            },
+                        }}
+                        className="pb-12"
+                    >
+                        {services.map((service, index) => (
+                            <SwiperSlide key={service.id}>
+                                <ServiceCard service={service} index={index} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
             </div>
         </section>
@@ -96,7 +142,7 @@ const ServiceCard = ({ service, index }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             onClick={() => navigate(`/servicos#${service.id}`)}
-            className="group relative h-[450px] rounded-2xl overflow-hidden cursor-pointer shadow-glow-soft hover:shadow-glow-medium transition-shadow duration-300"
+            className="group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer shadow-glow-soft hover:shadow-glow-medium transition-shadow duration-300"
         >
             {/* Background Image */}
             <div
@@ -110,27 +156,27 @@ const ServiceCard = ({ service, index }) => {
             />
 
             {/* Content Container */}
-            <div className="absolute inset-0 p-8 flex flex-col justify-end">
+            <div className="absolute inset-0 p-5 flex flex-col justify-end">
                 {/* Title */}
-                <h3 className="text-2xl font-heading font-bold !text-[#ffffff] mb-2 relative z-10 transform transition-transform duration-500 group-hover:-translate-y-2 drop-shadow-md">
+                <h3 className="text-lg font-heading font-bold !text-[#ffffff] mb-2 relative z-10 transform transition-transform duration-500 group-hover:-translate-y-2 drop-shadow-md">
                     {service.title}
                 </h3>
 
                 {/* Short Description */}
-                <p className="text-base !text-[#ffffff]/90 font-body mb-4 relative z-10  transition-colors duration-300 drop-shadow-md">
+                <p className="text-xs !text-[#ffffff]/90 font-body mb-3 relative z-10  transition-colors duration-300 drop-shadow-md line-clamp-2">
                     {service.shortDesc}
                 </p>
 
                 {/* Long Description and Divider line - Reveal on Hover */}
                 <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
                     <div className="overflow-hidden">
-                        <div className="pt-4 border-t border-electric-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-                            <p className="text-sm !text-[#ffffff]/90 font-body leading-relaxed drop-shadow-sm">
+                        <div className="pt-3 border-t border-electric-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+                            <p className="text-xs !text-[#ffffff]/90 font-body leading-relaxed drop-shadow-sm line-clamp-3">
                                 {service.longDesc}
                             </p>
-                            <div className="mt-4 flex items-center text-neon-coral text-sm font-semibold drop-shadow-md">
+                            <div className="mt-2 flex items-center text-neon-coral text-xs font-semibold drop-shadow-md">
                                 Saber mais
-                                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </div>

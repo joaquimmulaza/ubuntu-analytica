@@ -70,7 +70,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${theme === 'light'
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${theme === 'light'
         ? 'bg-ubuntu-blue shadow-glow-soft'
         : (scrolled ? 'bg-midnight-black/90 backdrop-blur-neon shadow-glow-soft border-b border-soft-neon-glow/20' : 'bg-transparent')
         }`}
@@ -100,8 +100,7 @@ const Header = () => {
             />
           </RouterLink>
           <NavLink to="processos">Processos</NavLink>
-          <NavLink to="demos">Demos</NavLink>
-          <NavLink to="quem-somos">Quem Somos</NavLink>
+          <NavLink to="quem-somos">Sobre Nós</NavLink>
           <NavLink to="artigos">Artigos</NavLink>
           <RouterLink
             to="/candidaturas"

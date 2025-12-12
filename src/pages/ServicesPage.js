@@ -242,6 +242,15 @@ const ServicesPage = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Auto-scroll the active tab into view
+    useEffect(() => {
+        const activeTabEl = document.getElementById(`tab-${selectedIndex}`);
+        if (activeTabEl) {
+            activeTabEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }, [selectedIndex]);
+
+
     // Theme-based colors
     const isLight = theme === 'light';
     const textColor = isLight ? 'text-[#0D1E2C]' : 'text-white';
@@ -293,16 +302,29 @@ const ServicesPage = () => {
             </div>
 
             {/* Sticky Floating Tabs */}
-            <div className="sticky top-24 z-40 w-full flex justify-center mb-20 px-4">
-                <div className={`backdrop-blur-xl rounded-full p-2 border transition-all duration-300 ${tabContainerClass}`}>
+            <div className="sticky top-28 md:top-32 z-40 w-full flex justify-center mb-12 md:mb-20 px-2 md:px-4">
+                <div className={`
+                    backdrop-blur-xl 
+                    rounded-2xl md:rounded-full 
+                    p-1.5 md:p-2 
+                    border 
+                    items-center
+                    flex
+                    active:cursor-grabbing 
+                    overflow-x-auto 
+                    max-w-full
+                    no-scrollbar
+                    ${tabContainerClass}
+                `}>
                     <TabGroup selectedIndex={selectedIndex} onChange={scrollToSection}>
-                        <TabList className="flex space-x-2 md:space-x-4">
+                        <TabList className="flex items-center space-x-2 md:space-x-4 min-w-max px-2 mx-auto">
                             {services.map((service, index) => (
                                 <Tab
                                     key={service.id}
+                                    id={`tab-${index}`} // Added ID for scroll targeting
                                     className={({ selected }) =>
                                         classNames(
-                                            'relative rounded-full px-4 py-2.5 text-sm md:text-base font-medium transition-all duration-300 focus:outline-none whitespace-nowrap',
+                                            'relative rounded-full px-4 py-2.5 text-sm md:text-base font-medium transition-all duration-300 focus:outline-none whitespace-nowrap scroll-smooth',
                                             selected
                                                 // Active styles handled by motion layoutId below
                                                 ? (isLight ? 'text-white' : 'text-white')
@@ -489,25 +511,6 @@ const ServicesPage = () => {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
                                             </div>
 
-                                            {/* Bottom Card Info - Visible on card */}
-                                            <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                                                <div className={`backdrop-blur-md rounded-xl p-4 border flex items-center justify-between ${isLight
-                                                    ? 'bg-white/80 border-white/40 shadow-sm'
-                                                    : 'bg-black/40 border-white/10'
-                                                    }`}>
-                                                    <span className={`text-sm font-bold uppercase tracking-widest ${isLight ? 'text-electric-blue' : 'text-neon-coral'}`}>
-                                                        Explore Solution
-                                                    </span>
-                                                    <motion.div
-                                                        animate={{ x: [0, 5, 0] }}
-                                                        transition={{ repeat: Infinity, duration: 1.5 }}
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${isLight ? 'text-[#0D1E2C]' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                                        </svg>
-                                                    </motion.div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>

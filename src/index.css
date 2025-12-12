@@ -338,3 +338,15 @@ textarea::placeholder {
   background-image: none !important;
   -webkit-text-fill-color: #FFFFFF !important;
 }
+
+/* Hide Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}

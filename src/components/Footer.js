@@ -41,8 +41,7 @@ const Footer = () => {
               <NavLink to="home">Home</NavLink>
               <RouterLink to="/servicos" className="hover:text-[#FFFFFF] transition-all duration-300 font-body text-sm text-[#FFFFFF]/60">Serviços</RouterLink>
               <NavLink to="processos">Processos</NavLink>
-              <NavLink to="demos">Demos</NavLink>
-              <NavLink to="quem-somos">Quem Somos</NavLink>
+              <NavLink to="quem-somos">Sobre Nós</NavLink>
               <NavLink to="artigos">Artigos</NavLink>
               <NavLink to="contactos">Contactos</NavLink>
             </nav>

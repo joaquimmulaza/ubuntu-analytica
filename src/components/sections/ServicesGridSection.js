@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import BackgroundEffect from '../BackgroundEffect';
 import { useTheme } from '../../context/ThemeContext';
@@ -85,12 +86,16 @@ const ServicesGridSection = () => {
     );
 };
 
+
 const ServiceCard = ({ service, index }) => {
+    const navigate = useNavigate();
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
+            onClick={() => navigate(`/servicos#${service.id}`)}
             className="group relative h-[450px] rounded-2xl overflow-hidden cursor-pointer shadow-glow-soft hover:shadow-glow-medium transition-shadow duration-300"
         >
             {/* Background Image */}

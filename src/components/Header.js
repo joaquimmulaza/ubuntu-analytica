@@ -86,7 +86,19 @@ const Header = () => {
         {/* Centered Navigation */}
         <nav className="hidden md:flex items-center space-x-8 font-light text-sm text-white flex-1 justify-center">
           <NavLink to="home">Home</NavLink>
-          <NavLink to="servicos">Serviços</NavLink>
+          <RouterLink
+            to="/servicos"
+            className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
+              ? 'text-[#FFFFFF]'
+              : (location.pathname === '/servicos' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+              }`}
+          >
+            <span>Serviços</span>
+            <span
+              className={`absolute left-0 bottom-0 h-0.5 bg-gradient-to-r from-electric-blue to-neon-purple transition-all duration-300 ease-out ${location.pathname === '/servicos' ? 'w-full' : 'w-0 group-hover:w-full'}`}
+              style={{ bottom: '-4px' }}
+            />
+          </RouterLink>
           <NavLink to="processos">Processos</NavLink>
           <NavLink to="demos">Demos</NavLink>
           <NavLink to="quem-somos">Quem Somos</NavLink>
@@ -126,7 +138,19 @@ const Header = () => {
         } ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <nav className="flex flex-col items-center space-y-4 p-6 text-white">
           <NavLink to="home">Home</NavLink>
-          <NavLink to="servicos">Serviços</NavLink>
+          <RouterLink
+            to="/servicos"
+            className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
+              ? 'text-[#FFFFFF]'
+              : (location.pathname === '/servicos' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
+              }`}
+          >
+            <span>Serviços</span>
+            <span
+              className={`absolute left-0 bottom-0 h-0.5 bg-gradient-to-r from-electric-blue to-neon-purple transition-all duration-300 ease-out ${location.pathname === '/servicos' ? 'w-full' : 'w-0 group-hover:w-full'}`}
+              style={{ bottom: '-4px' }}
+            />
+          </RouterLink>
           <NavLink to="processos">Processos</NavLink>
           <NavLink to="demos">Demos</NavLink>
           <NavLink to="quem-somos">Quem Somos</NavLink>

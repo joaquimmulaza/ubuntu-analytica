@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@portabletext/react": "^5.0.0",
     "@sanity/client": "^7.13.0",
     "@sanity/image-url": "^1.2.0",

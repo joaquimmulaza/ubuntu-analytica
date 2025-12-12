@@ -39,7 +39,7 @@ const Footer = () => {
             </p>
             <nav className="flex flex-col space-y-3">
               <NavLink to="home">Home</NavLink>
-              <NavLink to="servicos">Serviços</NavLink>
+              <RouterLink to="/servicos" className="hover:text-[#FFFFFF] transition-all duration-300 font-body text-sm text-[#FFFFFF]/60">Serviços</RouterLink>
               <NavLink to="processos">Processos</NavLink>
               <NavLink to="demos">Demos</NavLink>
               <NavLink to="quem-somos">Quem Somos</NavLink>

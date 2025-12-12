@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import CareersPage from './pages/CareersPage';
+import ServicesPage from './pages/ServicesPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SinglePost from './components/SinglePost';
@@ -288,6 +289,7 @@ function App() {
               {/* Add other routes here */}
               <Route path="/post/:slug" element={<SinglePost />} />
               <Route path="/candidaturas" element={<CareersPage />} />
+              <Route path="/servicos" element={<ServicesPage />} />
             </Routes>
           </main>
           <Footer />

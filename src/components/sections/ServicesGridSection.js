@@ -52,6 +52,8 @@ const services = [
 
 
 const ServicesGridSection = () => {
+    const { theme } = useTheme();
+
     // This section is always dark/white text due to the nature of the cards
     return (
         <section id="servicos" className="relative py-24 overflow-hidden text-white bg-midnight-black">
@@ -69,7 +71,7 @@ const ServicesGridSection = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-5xl font-heading font-extrabold mb-6 text-white"
+                        className={`text-4xl md:text-5xl font-heading font-extrabold mb-6 ${theme === 'light' ? 'text-[#0D1E2C]' : 'text-white'}`}
                     >
                         Serviços
                     </motion.h2>

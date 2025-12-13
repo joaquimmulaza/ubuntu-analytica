@@ -332,7 +332,13 @@ textarea::placeholder {
 }
 
 /* Force white text for Services Section in light mode */
-[data-theme='light'] #servicos h2,
+/* Force white text for Services Section in light mode */
+[data-theme='light'] #servicos h2 {
+  color: #0D1E2C !important;
+  background-image: none !important;
+  -webkit-text-fill-color: #0D1E2C !important;
+}
+
 [data-theme='light'] #servicos h3 {
   color: #FFFFFF !important;
   background-image: none !important;

@@ -345,6 +345,12 @@ textarea::placeholder {
   -webkit-text-fill-color: #FFFFFF !important;
 }
 
+/* Force dark text for inputs in light mode */
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+  color: #0D1E2C !important;
+}
+
 /* Hide Scrollbar Utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

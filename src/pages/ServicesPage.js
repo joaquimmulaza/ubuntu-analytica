@@ -267,18 +267,13 @@ const ServicesPage = () => {
 
             {/* Background Effects */}
             <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                {!isLight && (
-                    <BackgroundEffect
-                        orb1Color="bg-neon-purple/20"
-                        orb2Color="bg-electric-blue/10"
-                        orb1Position="top-[-10%] right-[-10%]"
-                        orb2Position="bottom-[-10%] left-[-10%]"
-                        className="opacity-50"
-                    />
-                )}
-                {isLight && (
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-50 via-transparent to-transparent opacity-70"></div>
-                )}
+                <BackgroundEffect
+                    orb1Color="bg-neon-purple/20"
+                    orb2Color="bg-electric-blue/10"
+                    orb1Position="top-[-10%] right-[-10%]"
+                    orb2Position="bottom-[-10%] left-[-10%]"
+                    className="opacity-50"
+                />
             </div>
 
             {/* Header Content */}
@@ -397,7 +392,7 @@ const ServicesPage = () => {
                                                         <p key={i}>{paragraph}</p>
                                                     ))}
                                                     {service.mainFeatures && service.mainFeatures.map((mf, i) => (
-                                                        <p key={`mf-${i}`} className="font-semibold text-electric-blue">{mf}</p>
+                                                        <p key={`mf-${i}`} className="font-semibold ">{mf}</p>
                                                     ))}
                                                 </div>
 
@@ -421,7 +416,7 @@ const ServicesPage = () => {
                                                 {/* Value Section */}
                                                 {service.value && (
                                                     <div className={`p-6 rounded-2xl border ${isLight ? 'bg-blue-50/50 border-blue-100' : 'bg-electric-blue/5 border-electric-blue/20'}`}>
-                                                        <h4 className="text-lg font-heading font-bold mb-3 text-electric-blue">
+                                                        <h4 className="text-lg font-heading font-bold mb-3">
                                                             {service.valueTitle}
                                                         </h4>
                                                         <div className={`space-y-2 ${subTextColor}`}>
@@ -434,7 +429,7 @@ const ServicesPage = () => {
                                                                 <ul className="grid grid-cols-1 gap-2 pt-2">
                                                                     {service.valueList.map((item, i) => (
                                                                         <li key={i} className="flex items-start space-x-2">
-                                                                            <div className="flex-shrink-0 w-1.5 h-1.5 mt-2.5 rounded-full bg-electric-blue"></div>
+                                                                            <div className="flex-shrink-0 w-1.5 h-1.5 mt-2.5 rounded-full bg-neon-coral"></div>
                                                                             <span>{item}</span>
                                                                         </li>
                                                                     ))}

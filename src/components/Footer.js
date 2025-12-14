@@ -25,10 +25,10 @@ const Footer = () => {
       {/* Laser Separator */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
 
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1 - Brand */}
-          <div className="space-y-6">
+          <div className="w-full">
             <img src="/img/logo_branco.png" alt="Ubuntu Analytica Logo" className="h-12" />
           </div>
 
@@ -42,8 +42,8 @@ const Footer = () => {
               <RouterLink to="/servicos" className="hover:text-[#FFFFFF] transition-all duration-300 font-body text-sm text-[#FFFFFF]/60">Serviços</RouterLink>
               <NavLink to="processos">Processos</NavLink>
               <NavLink to="quem-somos">Sobre Nós</NavLink>
-              <NavLink to="artigos">Artigos</NavLink>
-              <NavLink to="contactos">Contactos</NavLink>
+              {/* <NavLink to="artigos">Artigos</NavLink> */}
+              {/* <NavLink to="contactos">Contactos</NavLink> */}
             </nav>
           </div>
 

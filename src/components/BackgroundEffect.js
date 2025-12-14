@@ -19,16 +19,16 @@ const BackgroundEffect = ({
     const isLight = theme === 'light';
 
     // Set defaults based on theme if not provided
-    const effectiveGradientFrom = gradientFrom || (isLight ? "from-midnight-black" : "from-midnight-black");
+    const effectiveGradientFrom = gradientFrom || (isLight ? "from-[#F8F9FA]" : "from-midnight-black");
     const effectiveGradientVia = gradientVia || (isLight ? "via-electric-blue/5" : "via-purple-900/10");
-    const effectiveGradientTo = gradientTo || (isLight ? "to-midnight-black" : "to-midnight-black");
+    const effectiveGradientTo = gradientTo || (isLight ? "to-[#F8F9FA]" : "to-midnight-black");
 
     const particlesInit = useCallback(async engine => {
         await loadSlim(engine);
     }, []);
 
     return (
-        <div className={`absolute inset-0 z-0 overflow-hidden bg-midnight-black ${className}`}>
+        <div className={`absolute inset-0 z-0 overflow-hidden ${isLight ? 'bg-[#F8F9FA]' : 'bg-midnight-black'} ${className}`}>
             {/* Linear Gradient Overlay */}
             <div className={`absolute inset-0 bg-gradient-to-b ${effectiveGradientFrom} ${effectiveGradientVia} ${effectiveGradientTo}`}></div>
 

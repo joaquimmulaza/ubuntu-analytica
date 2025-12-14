@@ -1,10 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundEffect from '../BackgroundEffect';
+import emailjs from '@emailjs/browser';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const validateForm = () => {
+    if (!formData.name.trim()) return "Por favor, introduza o seu nome.";
+    if (!formData.email.trim()) return "Por favor, introduza o seu email.";
+    if (!/\S+@\S+\.\S+/.test(formData.email)) return "Por favor, introduza um email válido.";
+    if (!formData.message.trim()) return "Por favor, escreva a sua mensagem.";
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const error = validateForm();
+    if (error) {
+      toast.error(error);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Prepare template parameters matching the user's request context if needed, 
+    // but usually keys must match the EmailJS template variables.
+    // Assuming template variables are: user_name, user_email, company, phone, message
+    const templateParams = {
+      user_name: formData.name,
+      user_email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      message: formData.message,
+      to_email: 'recursoshumanos@ubuntuanalytica.ao' // Explicit instruction for destination
+    };
+
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
+
+      toast.success('Mensagem enviada com sucesso! Entraremos em contacto em breve.');
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error('Erro ao enviar mensagem. Por favor, tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contactos" className="py-24 text-white relative overflow-hidden">
+      <Toaster position="top-center" toastOptions={{
+        style: {
+          background: '#161b22',
+          color: '#fff',
+          border: '1px solid rgba(63, 69, 255, 0.2)',
+        },
+      }} />
       <BackgroundEffect
         orb1Color="bg-electric-blue/5"
         orb2Color="bg-neon-coral/5"
@@ -58,12 +136,15 @@ const ContactSection = () => {
               Deixe-nos uma mensagem e responderemos rapidamente.
             </p>
 
-            <form className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Nome *</label>
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                     placeholder="Seu nome"
                   />
@@ -72,6 +153,9 @@ const ContactSection = () => {
                   <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Email *</label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                     placeholder="seu@email.com"
                   />
@@ -82,6 +166,9 @@ const ContactSection = () => {
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Empresa</label>
                 <input
                   type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                   placeholder="Sua empresa"
                 />
@@ -91,6 +178,9 @@ const ContactSection = () => {
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Telefone (opcional)</label>
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                   placeholder="+244 ..."
                 />
@@ -99,19 +189,37 @@ const ContactSection = () => {
               <div>
                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Mensagem *</label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows="4"
                   className="w-full bg-surface border border-soft-neon-glow/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:shadow-glow-soft transition-all font-body placeholder-soft-neon-glow/50"
                   placeholder="Como podemos ajudar?"
                 ></textarea>
               </div>
 
-              <button type="submit" className="w-full bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-3 rounded-full transition-all duration-300 flex items-center justify-center shadow-glow-soft">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                Enviar mensagem
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full bg-gradient-primary hover:shadow-glow-medium text-white font-body font-semibold py-3 rounded-full transition-all duration-300 flex items-center justify-center shadow-glow-soft ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    Enviar mensagem
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
-
           {/* Right Column */}
           <div className="flex flex-col gap-8">
             {/* Calendly Card */}

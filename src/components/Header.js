@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
@@ -27,6 +27,28 @@ const Header = () => {
     };
   }, [scrolled]);
 
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   const NavLink = ({ to, children }) => {
     const isActive = activeSection === to;
 
@@ -37,6 +59,7 @@ const Header = () => {
         duration={500}
         spy={true}
         onSetActive={() => setActiveSection(to)}
+        onClick={() => setIsMenuOpen(false)}
         className="relative cursor-pointer transition-all duration-300 font-body font-semibold group"
       >
         <span className={`transition-colors duration-300 ${theme === 'light'
@@ -54,6 +77,7 @@ const Header = () => {
     ) : (
       <RouterLink
         to={`/#${to}`}
+        onClick={() => setIsMenuOpen(false)}
         className="relative transition-all duration-300 font-body font-semibold group"
       >
         <span className={`transition-colors duration-300 ${theme === 'light' ? 'text-[#FFFFFF]' : 'text-white hover:text-electric-blue'
@@ -101,7 +125,7 @@ const Header = () => {
           </RouterLink>
           <NavLink to="processos">Processos</NavLink>
           <NavLink to="quem-somos">Sobre Nós</NavLink>
-          <NavLink to="artigos">Artigos</NavLink>
+          {/* <NavLink to="artigos">Artigos</NavLink> */}
           <RouterLink
             to="/candidaturas"
             className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
@@ -115,7 +139,7 @@ const Header = () => {
               style={{ bottom: '-4px' }}
             />
           </RouterLink>
-          <NavLink to="contactos">Contactos</NavLink>
+          {/* <NavLink to="contactos">Contactos</NavLink> */}
         </nav>
 
         {/* Theme Toggle */}
@@ -125,7 +149,7 @@ const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-[#FFFFFF] focus:outline-none">
+          <button ref={buttonRef} onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-[#FFFFFF] focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
             </svg>
@@ -133,12 +157,13 @@ const Header = () => {
         </div>
       </div>
       {/* Mobile Menu */}
-      <div className={`absolute top-full left-0 w-full backdrop-blur-neon md:hidden transition-all duration-300 ease-in-out border-b border-soft-neon-glow/20 ${theme === 'light' ? 'bg-ubuntu-blue' : 'bg-midnight-black/95'
+      <div ref={menuRef} className={`absolute top-full left-0 w-full backdrop-blur-neon md:hidden transition-all duration-300 ease-in-out border-b border-soft-neon-glow/20 ${theme === 'light' ? 'bg-ubuntu-blue' : 'bg-midnight-black/95'
         } ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <nav className="flex flex-col items-center space-y-4 p-6 text-white">
           <NavLink to="home">Home</NavLink>
           <RouterLink
             to="/servicos"
+            onClick={() => setIsMenuOpen(false)}
             className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
               ? 'text-[#FFFFFF]'
               : (location.pathname === '/servicos' ? 'text-electric-blue' : 'text-white hover:text-electric-blue')
@@ -151,9 +176,9 @@ const Header = () => {
             />
           </RouterLink>
           <NavLink to="processos">Processos</NavLink>
-          <NavLink to="demos">Demos</NavLink>
-          <NavLink to="quem-somos">Quem Somos</NavLink>
-          <NavLink to="artigos">Artigos</NavLink>
+          {/* <NavLink to="demos">Demos</NavLink> */}
+          <NavLink to="quem-somos">Sobre Nós</NavLink>
+          {/* <NavLink to="artigos">Artigos</NavLink> */}
           <RouterLink
             to="/candidaturas"
             onClick={() => setIsMenuOpen(false)}
@@ -164,7 +189,7 @@ const Header = () => {
           >
             <span>Candidaturas</span>
           </RouterLink>
-          <NavLink to="contactos">Contactos</NavLink>
+          {/* <NavLink to="contactos">Contactos</NavLink> */}
 
 
 

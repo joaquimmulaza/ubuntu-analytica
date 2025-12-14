@@ -351,6 +351,11 @@ textarea::placeholder {
   color: #0D1E2C !important;
 }
 
+/* Force dark text for contact details in light mode */
+[data-theme="light"] .contact-details-list .text-white {
+  color: #0D1E2C !important;
+}
+
 /* Hide Scrollbar Utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

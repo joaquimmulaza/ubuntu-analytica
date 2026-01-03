@@ -28,7 +28,7 @@ const HeroSection = () => {
     <section className="relative h-screen text-white overflow-hidden">
       <BackgroundEffect />
 
-      <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center items-center text-center">
+      <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center items-center text-center pb-32 md:pb-0">
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -58,9 +58,10 @@ const HeroSection = () => {
             </NavLink>
           </div>
 
-          <div className="text-sm text-soft-neon-glow/80 font-body">
-            <p className="mb-2 uppercase tracking-wider text-xs text-soft-neon-glow/60 font-semibold">Stack Tecnológico:</p>
-            <p className="font-light">Power BI • Tableau • Metabase • Python • Data Engineering (Kafka, Apache Hop, Pentaho)</p>
+          <div className="mt-8">
+            <p className="text-lg md:text-xl font-semibold tracking-widest text-soft-neon-glow uppercase">
+              Criatividade, Excelência e Resultado
+            </p>
           </div>
         </motion.div>
 

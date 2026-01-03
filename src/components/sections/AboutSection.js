@@ -24,10 +24,10 @@ const boardMembers = [
     linkedin: "https://www.linkedin.com/in/adilson-fernando-89313116a/"
   },
   {
-    name: "José Alcides",
+    name: "David Tombi",
     role: "Administrador",
-    image: "/img/team/jose-alcides.jpg", // Placeholder
-    linkedin: "https://www.linkedin.com/in/jos%C3%A9-alcides-246519127/"
+    image: "/img/team/david-tombi.webp", // Placeholder
+    linkedin: "https://www.linkedin.com/in/david-tombi1998/"
   },
   {
     name: "Nirvânia Mendes",

@@ -18,6 +18,12 @@ const founders = [
 
 const boardMembers = [
   {
+    name: "Nirvânia Mendes",
+    role: "Administradora",
+    image: "/img/team/nirvania-mendes.webp", // Placeholder
+    linkedin: "#"
+  },
+  {
     name: "Adilson da Costa",
     role: "Administrador",
     image: "/img/team/adilson-costa.webp", // Placeholder
@@ -28,12 +34,6 @@ const boardMembers = [
     role: "Administrador",
     image: "/img/team/david-tombi.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/david-tombi1998/"
-  },
-  {
-    name: "Nirvânia Mendes",
-    role: "Administradora",
-    image: "/img/team/nirvania-mendes.webp", // Placeholder
-    linkedin: "#"
   },
   {
     name: "Antenon Sacambela",

@@ -21,7 +21,7 @@ const boardMembers = [
     name: "Nirvânia Mendes",
     role: "Administradora",
     image: "/img/team/nirvania-mendes.webp", // Placeholder
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/nirv%C3%A2nia-mendes-014082163"
   },
   {
     name: "Adilson da Costa",
@@ -38,7 +38,7 @@ const boardMembers = [
   {
     name: "Antenon Sacambela",
     role: "Administrador",
-    image: "/img/team/antenon-sacambela.jpg", // Placeholder
+    image: "/img/team/antenon-sacambela.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/antenonsacambela/"
   }
 ];

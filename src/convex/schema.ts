@@ -11,5 +11,11 @@ export default defineSchema({
   users: defineTable({
     username: v.string(),
     passwordHash: v.string(),
-  }).index("by_username", ["username"]),
+    email: v.optional(v.string()),
+    resetToken: v.optional(v.string()),
+    resetTokenExpiry: v.optional(v.number()),
+  })
+    .index("by_username", ["username"])
+    .index("by_email", ["email"])
+    .index("by_resetToken", ["resetToken"]),
 });

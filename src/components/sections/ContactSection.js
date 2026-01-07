@@ -116,11 +116,11 @@ const ContactSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto w-full">
           {/* Left Column - Form */}
           <motion.div
-            className="bg-surface p-8 rounded-neon border border-white/10 shadow-glow-soft relative overflow-hidden"
-            initial={{ opacity: 0, x: -50 }}
+            className="bg-surface p-6 md:p-8 rounded-neon border border-white/10 shadow-glow-soft relative overflow-hidden w-full"
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
@@ -221,11 +221,11 @@ const ContactSection = () => {
             </form>
           </motion.div>
           {/* Right Column */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 w-full">
             {/* Calendly Card */}
             <motion.div
-              className="bg-surface/80 p-8 rounded-neon border border-white/10 backdrop-blur-md shadow-glow-soft"
-              initial={{ opacity: 0, x: 50 }}
+              className="bg-surface/80 p-6 md:p-8 rounded-neon border border-white/10 backdrop-blur-md shadow-glow-soft w-full"
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -253,8 +253,8 @@ const ContactSection = () => {
 
             {/* Info Card */}
             <motion.div
-              className="bg-surface/80 p-8 rounded-neon border border-white/10 backdrop-blur-md shadow-glow-soft flex-1"
-              initial={{ opacity: 0, x: 50 }}
+              className="bg-surface/80 p-6 md:p-8 rounded-neon border border-white/10 backdrop-blur-md shadow-glow-soft flex-1 w-full"
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}

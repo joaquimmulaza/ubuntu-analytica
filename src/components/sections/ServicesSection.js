@@ -295,8 +295,8 @@ const ServicesSection = () => {
 
         {/* Pronto para começar? CTA Card */}
         <motion.div
-          className="mt-16 relative rounded-xl overflow-hidden bg-surface/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
+          className="mt-16 relative rounded-xl overflow-hidden bg-surface/60 backdrop-blur-neon border border-soft-neon-glow/30 shadow-glow-medium max-w-4xl mx-auto w-full"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}

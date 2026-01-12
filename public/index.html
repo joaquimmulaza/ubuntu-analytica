@@ -18,6 +18,27 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+    <!-- Google Analytics (gtag.js) - Optimized -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYF65LHQ52"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Configuração inicial com timestamp
+      gtag('js', new Date());
+      
+      // Configuração do GA4 com opções otimizadas
+      gtag('config', 'G-MYF65LHQ52', {
+        // Anonimizar IP para conformidade com GDPR/LGPD
+        'anonymize_ip': true,
+        // Enviar page_view automaticamente
+        'send_page_view': true,
+        // Cookie flags para segurança
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+    </script>
+    
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.

@@ -12,7 +12,7 @@ const founders = [
     name: "João Diassiwa",
     role: "CFO",
     image: "/img/team/joao-baptista.webp", // Placeholder
-    linkedin: "linkedin.com/in/joão-diassiwa28"
+    linkedin: "https://www.linkedin.com/in/joão-diassiwa28"
   }
 ];
 

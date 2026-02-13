@@ -43,7 +43,7 @@ const ArticlesSection = () => {
     };
 
     return (
-        <section id="artigos" className="py-24 text-white relative overflow-hidden hidden">
+        <section id="artigos" className="py-24 text-white relative overflow-hidden">
             <BackgroundEffect
                 orb1Color="bg-cyber-purple/5"
                 orb2Color="bg-neon-coral/5"

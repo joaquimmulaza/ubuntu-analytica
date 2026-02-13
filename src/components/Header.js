@@ -125,7 +125,7 @@ const Header = () => {
           </RouterLink>
           <NavLink to="processos">Processos</NavLink>
           <NavLink to="quem-somos">Sobre Nós</NavLink>
-          {/* <NavLink to="artigos">Artigos</NavLink> */}
+          <NavLink to="artigos">Artigos</NavLink>
           <RouterLink
             to="/candidaturas"
             className={`relative transition-all duration-300 font-body font-semibold group ${theme === 'light'
@@ -178,7 +178,7 @@ const Header = () => {
           <NavLink to="processos">Processos</NavLink>
           {/* <NavLink to="demos">Demos</NavLink> */}
           <NavLink to="quem-somos">Sobre Nós</NavLink>
-          {/* <NavLink to="artigos">Artigos</NavLink> */}
+          <NavLink to="artigos">Artigos</NavLink>
           <RouterLink
             to="/candidaturas"
             onClick={() => setIsMenuOpen(false)}

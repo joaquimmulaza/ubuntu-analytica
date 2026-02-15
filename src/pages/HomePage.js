@@ -6,12 +6,25 @@ import ServicesGridSection from '../components/sections/ServicesGridSection';
 import ContactSection from '../components/sections/ContactSection';
 import DemosSection from '../components/sections/DemosSection';
 import ArticlesSection from '../components/sections/ArticlesSection';
-import { Element } from 'react-scroll';
+import { useLocation } from 'react-router-dom';
+import { Element, scroller } from 'react-scroll';
 
 import { useTheme } from '../context/ThemeContext';
 
 const HomePage = () => {
   const { theme } = useTheme();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      scroller.scrollTo(id, {
+        smooth: true,
+        duration: 500,
+        offset: -70 // Adjust for header height
+      });
+    }
+  }, [location]);
 
   return (
     <div className={`transition-colors duration-300 ${theme === 'light' ? 'bg-white' : 'bg-midnight-black'}`}>

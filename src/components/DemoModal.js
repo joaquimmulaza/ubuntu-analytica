@@ -126,12 +126,17 @@ const DemoModal = ({ demo, onClose }) => {
                                     Ver Demo Interativa
                                 </a>
                             )}
-                            <a
-                                href="/contactos"
+                            <button
+                                onClick={() => {
+                                    onClose();
+                                    setTimeout(() => {
+                                        window.location.hash = 'contactos';
+                                    }, 100);
+                                }}
                                 className="block w-full text-center border border-gray-600 hover:border-white text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                             >
                                 Entre em contacto
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </motion.div>

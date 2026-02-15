@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import BackgroundEffect from '../BackgroundEffect';
+import FuturisticSpinner from '../FuturisticSpinner';
 // Certifique-se que este caminho está correto para o seu ficheiro sanityClient
 import { client } from '../../sanityClient';
 
@@ -78,10 +79,10 @@ const ArticlesSection = () => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-8 mb-20">
-                    {/* Se estiver a carregar, mostra uma mensagem simples */}
+                    {/* Se estiver a carregar, mostra o spinner futurista */}
                     {isLoading && (
-                        <div className="w-full text-center text-soft-neon-glow/60 animate-pulse font-body">
-                            A carregar artigos...
+                        <div className="w-full flex justify-center">
+                            <FuturisticSpinner />
                         </div>
                     )}
 

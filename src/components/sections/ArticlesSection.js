@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import BackgroundEffect from '../BackgroundEffect';
 // Certifique-se que este caminho está correto para o seu ficheiro sanityClient
 import { client } from '../../sanityClient';
@@ -9,6 +10,7 @@ const ArticlesSection = () => {
     // Ela começa vazia ([]) e não com os dados provisórios
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         // 2. Esta query vai ao Sanity buscar os dados REAIS
@@ -28,7 +30,11 @@ const ArticlesSection = () => {
                 setArticles(data);
                 setIsLoading(false);
             })
-            .catch(console.error);
+            .catch((err) => {
+                console.error("Erro ao carregar artigos:", err);
+                setError("Não foi possível carregar os artigos. Verifique a consola para mais detalhes.");
+                setIsLoading(false);
+            });
     }, []);
 
     // Função para formatar a data (ex: 2024-10-05 -> 5 de outubro de 2024)
@@ -79,15 +85,22 @@ const ArticlesSection = () => {
                         </div>
                     )}
 
+                    {/* Se houver erro, mostra mensagem de erro */}
+                    {!isLoading && error && (
+                        <div className="w-full text-center text-neon-coral font-body">
+                            {error}
+                        </div>
+                    )}
+
                     {/* Se não houver artigos no Sanity, avisa */}
-                    {!isLoading && articles.length === 0 && (
+                    {!isLoading && !error && articles.length === 0 && (
                         <div className="w-full text-center text-neon-coral font-body">
                             Ainda não há artigos publicados.
                         </div>
                     )}
 
                     {/* Aqui fazemos o loop nos artigos REAIS do Sanity */}
-                    {!isLoading && articles.map((article, index) => (
+                    {!isLoading && !error && articles.map((article, index) => (
                         <motion.div
                             key={article._id}
                             className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] max-w-md bg-surface/80 border border-soft-neon-glow/30 rounded-neon p-8 flex flex-col hover:border-electric-blue/60 transition-all duration-300 backdrop-blur-neon hover:shadow-glow-medium"
@@ -112,13 +125,22 @@ const ArticlesSection = () => {
                                 {article.title}
                             </h3>
 
-                            <a
-                                href={`/post/${article.slug}`}
-                                className="w-full bg-gradient-primary rounded-full py-3 px-6 text-center text-sm font-body font-semibold hover:shadow-glow-medium transition-all duration-300 flex items-center justify-center group"
-                            >
-                                Ler mais
-                                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
+                            {article.slug ? (
+                                <Link
+                                    to={`/post/${article.slug}`}
+                                    className="w-full bg-gradient-primary rounded-full py-3 px-6 text-center text-sm font-body font-semibold hover:shadow-glow-medium transition-all duration-300 flex items-center justify-center group"
+                                >
+                                    Ler mais
+                                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </Link>
+                            ) : (
+                                <button
+                                    disabled
+                                    className="w-full bg-gray-600 rounded-full py-3 px-6 text-center text-sm font-body font-semibold opacity-50 cursor-not-allowed flex items-center justify-center"
+                                >
+                                    Indisponível (Sem Slug)
+                                </button>
+                            )}
                         </motion.div>
                     ))}
                 </div>

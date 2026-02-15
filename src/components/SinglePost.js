@@ -32,9 +32,9 @@ const postComponents = {
     link: ({ children, value }) => {
       const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined;
       return (
-        <a 
-          href={value.href} 
-          rel={rel} 
+        <a
+          href={value.href}
+          rel={rel}
           target="_blank" // Abre em nova aba
           className="text-[#58a6ff] hover:underline decoration-2 underline-offset-2 transition-colors"
         >
@@ -55,6 +55,8 @@ const postComponents = {
 
 export default function SinglePost() {
   const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { slug } = useParams(); // Pega o slug da URL (ex: /post/o-meu-artigo)
 
   useEffect(() => {
@@ -68,12 +70,24 @@ export default function SinglePost() {
       body
     }`;
 
+    setIsLoading(true);
     client.fetch(query, { slug })
-      .then((data) => setPost(data))
-      .catch(console.error);
+      .then((data) => {
+        setPost(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Erro ao carregar artigo:", err);
+        setError("Não foi possível carregar o artigo.");
+        setIsLoading(false);
+      });
   }, [slug]);
 
-  if (!post) return <div className="text-center py-20 bg-[#161b22] text-white">A carregar artigo...</div>;
+  if (isLoading) return <div className="text-center py-20 bg-[#161b22] text-white">A carregar artigo...</div>;
+
+  if (error) return <div className="text-center py-20 bg-[#161b22] text-neon-coral">{error} <br /> <span className="text-sm text-gray-400">Verifique a consola se for o desenvolvedor.</span></div>;
+
+  if (!post) return <div className="text-center py-20 bg-[#161b22] text-white">Artigo não encontrado.</div>;
 
   return (
     <div className="bg-[#161b22] min-h-screen text-white font-mono pt-24 pb-12">
@@ -81,7 +95,7 @@ export default function SinglePost() {
         <title>{post.title} | Ubuntu Analytica</title>
         <meta name="description" content={`Leia sobre ${post.title} na Ubuntu Analytica.`} />
       </Helmet>
-      <motion.article 
+      <motion.article
         className="container mx-auto px-6 max-w-3xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -95,16 +109,16 @@ export default function SinglePost() {
         {/* Cabeçalho do Artigo */}
         <header className="mb-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{post.title}</h1>
-          
+
           <div className="flex items-center text-gray-400 text-sm mb-8 border-b border-[#30363d] pb-8">
             <span className="mr-4">
               {/* Lógica de Correção: Usa publishedAt OU _createdAt */}
-                📅 {new Date(post.publishedAt || post._createdAt).toLocaleDateString('pt-AO', { 
-                    day: 'numeric', 
-                    month: 'long', 
-                    year: 'numeric' 
-                })
-                }
+              📅 {new Date(post.publishedAt || post._createdAt).toLocaleDateString('pt-AO', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+              })
+              }
             </span>
           </div>
 

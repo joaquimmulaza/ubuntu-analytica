@@ -10,11 +10,11 @@ const DemosSection = () => {
   const demos = useQuery(api.demos.list) || [];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDemo, setSelectedDemo] = useState(null);
-  const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth < 768 ? 1 : 2);
+  const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth < 768 ? 1 : 3);
 
   React.useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth < 768 ? 1 : 2);
+      setItemsPerPage(window.innerWidth < 768 ? 1 : 3);
     };
 
     window.addEventListener('resize', handleResize);
@@ -72,7 +72,7 @@ const DemosSection = () => {
                 </svg>
               </button>
 
-              <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
                 <AnimatePresence mode='wait'>
                   {visibleDemos.map((demo) => (
                     <motion.div
@@ -81,7 +81,7 @@ const DemosSection = () => {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -50 }}
                       transition={{ duration: 0.5 }}
-                      className="relative group w-full md:w-[500px] h-[300px] rounded-neon overflow-hidden cursor-pointer border border-soft-neon-glow/30 hover:border-electric-blue/60 transition-all duration-300 hover:shadow-glow-medium"
+                      className="relative group w-full h-[300px] rounded-neon overflow-hidden cursor-pointer border border-soft-neon-glow/30 hover:border-electric-blue/60 transition-all duration-300 hover:shadow-glow-medium"
                       onClick={() => setSelectedDemo(demo)}
                     >
                       <img

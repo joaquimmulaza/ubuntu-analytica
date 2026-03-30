@@ -117,7 +117,7 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-[#FFFFFF]/60 text-xs font-body">
-              © 2025 Ubuntu Analytica. Todos os direitos reservados.
+              © 2026 Ubuntu Analytica. Todos os direitos reservados.
             </p>
             <div className="flex space-x-6 text-xs font-body">
               <a href="#" className="text-[#FFFFFF]/60 hover:text-[#FFFFFF] transition-all duration-300">

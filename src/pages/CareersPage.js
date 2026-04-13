@@ -1,28 +1,61 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundEffect from '../components/BackgroundEffect';
+import { useMutation, useAction } from "convex/react";
+import { api } from "../convex/_generated/api";
 
 const CareersPage = () => {
     const [formStatus, setFormStatus] = useState(null); // null, 'submitting', 'success', 'error'
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const generateUploadUrl = useMutation(api.storage.generateUploadUrl);
+    const sendCareerApplication = useAction(api.emails.sendCareerApplication);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedFile(file.name);
+        } else {
+            setSelectedFile(null);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormStatus('submitting');
 
-        const formData = new FormData(e.target);
+        const formElement = e.target;
+        const formData = new FormData(formElement);
+        const attachment = formData.get('attachment');
 
         try {
-            const response = await fetch("https://formsubmit.co/ajax/joaquimmulazadev@gmail.com", {
+            // 1. Get Upload URL from Convex
+            const postUrl = await generateUploadUrl();
+
+            // 2. Upload file to Convex Storage
+            const result = await fetch(postUrl, {
                 method: "POST",
-                body: formData
+                headers: { "Content-Type": attachment.type },
+                body: attachment,
             });
 
-            if (response.ok) {
-                setFormStatus('success');
-                e.target.reset();
-            } else {
-                setFormStatus('error');
-            }
+            if (!result.ok) throw new Error("Falha no upload do ficheiro.");
+            const { storageId } = await result.json();
+
+            // 3. Send application email via Resend (Convex Action)
+            await sendCareerApplication({
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                portfolio: formData.get('portfolio'),
+                position: formData.get('position'),
+                message: formData.get('message'),
+                cvStorageId: storageId,
+            });
+
+            setFormStatus('success');
+            setSelectedFile(null);
+            formElement.reset();
         } catch (error) {
             console.error("Error submitting form:", error);
             setFormStatus('error');
@@ -82,7 +115,10 @@ const CareersPage = () => {
                             <h3 className="text-2xl font-bold mb-4 text-white">Candidatura Enviada!</h3>
                             <p className="text-soft-neon-glow/80 font-body">Obrigado pelo seu interesse. Analisaremos o seu perfil e entraremos em contacto brevemente.</p>
                             <button
-                                onClick={() => setFormStatus(null)}
+                                onClick={() => {
+                                    setFormStatus(null);
+                                    setSelectedFile(null);
+                                }}
                                 className="mt-8 text-electric-blue hover:text-white transition-colors font-body font-semibold"
                             >
                                 Enviar nova candidatura
@@ -166,24 +202,46 @@ const CareersPage = () => {
                                 ></textarea>
                             </div>
 
-                            <div>
+                             <div>
                                 <label className="block text-xs font-body font-semibold text-soft-neon-glow/70 mb-2">Anexar CV (PDF ou Word) *</label>
-                                <div className="relative border-2 border-dashed border-white/10 rounded-lg p-6 hover:border-electric-blue transition-colors text-center cursor-pointer group">
+                                <div className={`relative border-2 border-dashed rounded-lg p-6 transition-all duration-300 text-center cursor-pointer group ${selectedFile ? 'border-neon-coral bg-neon-coral/5 shadow-glow-soft' : 'border-white/10 hover:border-electric-blue'}`}>
                                     <input
                                         type="file"
                                         name="attachment"
                                         accept=".pdf,.doc,.docx"
                                         required
+                                        onChange={handleFileChange}
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                                     />
                                     <div className="flex flex-col items-center justify-center pointer-events-none">
-                                        <svg className="w-10 h-10 text-soft-neon-glow/50 group-hover:text-electric-blue mb-3 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                        </svg>
-                                        <p className="text-sm text-soft-neon-glow/70 group-hover:text-white transition-colors font-body">
-                                            Arraste o ficheiro ou clique para selecionar
+                                        <motion.div
+                                            initial={false}
+                                            animate={selectedFile ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
+                                            className="mb-3"
+                                        >
+                                            {selectedFile ? (
+                                                <svg className="w-10 h-10 text-neon-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                </svg>
+                                            ) : (
+                                                <svg className="w-10 h-10 text-soft-neon-glow/50 group-hover:text-electric-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                                </svg>
+                                            )}
+                                        </motion.div>
+                                        
+                                        <motion.p 
+                                            key={selectedFile ? 'file-selected' : 'no-file'}
+                                            initial={{ opacity: 0, y: 5 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className={`text-sm font-body transition-colors ${selectedFile ? 'text-white font-bold' : 'text-soft-neon-glow/70 group-hover:text-white'}`}
+                                        >
+                                            {selectedFile ? selectedFile : 'Arraste o ficheiro ou clique para selecionar'}
+                                        </motion.p>
+                                        
+                                        <p className="text-xs text-soft-neon-glow/50 mt-1 font-body">
+                                            {selectedFile ? 'Ficheiro selecionado com sucesso' : 'PDF, DOC ou DOCX (Max 5MB)'}
                                         </p>
-                                        <p className="text-xs text-soft-neon-glow/50 mt-1 font-body">PDF, DOC ou DOCX (Max 5MB)</p>
                                     </div>
                                 </div>
                             </div>

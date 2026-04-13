@@ -16,6 +16,7 @@ import type {
 import type * as auth from "../auth.js";
 import type * as authActions from "../authActions.js";
 import type * as demos from "../demos.js";
+import type * as emails from "../emails.js";
 import type * as passwordRecovery from "../passwordRecovery.js";
 import type * as passwordRecoveryQueries from "../passwordRecoveryQueries.js";
 import type * as resetPassword from "../resetPassword.js";
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   authActions: typeof authActions;
   demos: typeof demos;
+  emails: typeof emails;
   passwordRecovery: typeof passwordRecovery;
   passwordRecoveryQueries: typeof passwordRecoveryQueries;
   resetPassword: typeof resetPassword;

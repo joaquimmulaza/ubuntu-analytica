@@ -24,6 +24,12 @@ const boardMembers = [
     linkedin: "https://www.linkedin.com/in/nirv%C3%A2nia-mendes-014082163"
   },
   {
+    name: "Beatriz Pires",
+    role: "Administradora",
+    image: "/img/team/beatriz-pires.webp", // Placeholder
+    linkedin: "https://www.linkedin.com/in/beatrizsopires/"
+  },
+  {
     name: "Adilson da Costa",
     role: "Administrador",
     image: "/img/team/adilson-costa.webp", // Placeholder

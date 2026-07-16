@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 const founders = [
   {
     name: "Alberto Pedro",
-    role: "CEO",
+    role: "Diretor Geral",
     image: "/img/team/alberto-pedro.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/alberto-pedro-a39a67151/"
   },
   {
     name: "João Diassiwa",
-    role: "CFO",
+    role: "Diretor Financeiro",
     image: "/img/team/joao-baptista.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/joão-diassiwa28"
   }
@@ -19,31 +19,31 @@ const founders = [
 const boardMembers = [
   {
     name: "Nirvânia Mendes",
-    role: "Administradora",
+    role: "Diretora de Dados e IA",
     image: "/img/team/nirvania-mendes.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/nirv%C3%A2nia-mendes-014082163"
   },
   {
     name: "Beatriz Pires",
-    role: "Administradora",
+    role: "Diretora de Marketing e Criação",
     image: "/img/team/beatriz-pires.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/beatrizsopires/"
   },
   {
     name: "Adilson da Costa",
-    role: "Administrador",
+    role: "Diretor de Compliance",
     image: "/img/team/adilson-costa.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/adilson-fernando-89313116a/"
   },
   {
     name: "David Tombi",
-    role: "Administrador",
+    role: "Diretor de Auditoria",
     image: "/img/team/david-tombi.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/david-tombi1998/"
   },
   {
     name: "Antenon Sacambela",
-    role: "Administrador",
+    role: "Diretor de Recursos Humanos",
     image: "/img/team/antenon-sacambela.webp", // Placeholder
     linkedin: "https://www.linkedin.com/in/antenonsacambela/"
   }
@@ -129,7 +129,7 @@ const AboutSection = () => {
         {/* Fundadores Section */}
         <div className="mb-24">
           <div className="flex flex-col items-center mb-12">
-            <h3 className="text-2xl font-heading font-extrabold mb-2">Fundadores e Direção Executiva</h3>
+            <h3 className="text-2xl font-heading font-extrabold mb-2">Direção Geral</h3>
             <div className="w-16 h-1 bg-gradient-primary rounded-full shadow-glow-soft"></div>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -142,7 +142,7 @@ const AboutSection = () => {
         {/* Conselho Section */}
         <div>
           <div className="flex flex-col items-center mb-12">
-            <h3 className="text-2xl font-heading font-extrabold mb-2">Conselho de Administração</h3>
+            <h3 className="text-2xl font-heading font-extrabold mb-2">Diretores</h3>
             <div className="w-16 h-1 bg-gradient-primary rounded-full shadow-glow-soft"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -17,12 +17,12 @@ const founders = [
 ];
 
 const boardMembers = [
-  {
-    name: "Nirvânia Mendes",
-    role: "Diretora de Dados e IA",
-    image: "/img/team/nirvania-mendes.webp", // Placeholder
-    linkedin: "https://www.linkedin.com/in/nirv%C3%A2nia-mendes-014082163"
-  },
+  // {
+  //   name: "Nirvânia Mendes",
+  //   role: "Diretora de Dados e IA",
+  //   image: "/img/team/nirvania-mendes.webp", // Placeholder
+  //   linkedin: "https://www.linkedin.com/in/nirv%C3%A2nia-mendes-014082163"
+  // },
   {
     name: "Beatriz Pires",
     role: "Diretora de Marketing e Criação",

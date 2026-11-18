@@ -33,11 +33,11 @@ export const getImageUrl = query({
   },
 });
 
-// Função para listar todos os demos com os URLs das imagens
+// Função para listar todos os demos com os URLs das imagens (mais recentes primeiro)
 export const list = query({
   args: {},
   handler: async (ctx: QueryCtx) => {
-    const demos = await ctx.db.query("demos").collect();
+    const demos = await ctx.db.query("demos").order("desc").collect();
     
     // Mapeia os IDs de armazenamento para URLs completos
     return Promise.all(

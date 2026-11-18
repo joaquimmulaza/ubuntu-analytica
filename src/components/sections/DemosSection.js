@@ -7,7 +7,10 @@ import DemoModal from '../DemoModal';
 import BackgroundEffect from '../BackgroundEffect';
 
 const DemosSection = () => {
-  const demos = useQuery(api.demos.list) || [];
+  const rawDemos = useQuery(api.demos.list) || [];
+  const demos = React.useMemo(() => {
+    return [...rawDemos].sort((a, b) => (b._creationTime || 0) - (a._creationTime || 0));
+  }, [rawDemos]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDemo, setSelectedDemo] = useState(null);
   const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth < 768 ? 1 : 3);

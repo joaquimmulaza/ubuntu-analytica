@@ -5,7 +5,10 @@ import './PublicDemoGrid.css';
 import DemoModal from './DemoModal';
 
 const PublicDemoGrid = () => {
-  const demos = useQuery(api.demos.list) || [];
+  const rawDemos = useQuery(api.demos.list) || [];
+  const demos = React.useMemo(() => {
+    return [...rawDemos].sort((a, b) => (b._creationTime || 0) - (a._creationTime || 0));
+  }, [rawDemos]);
   const [selectedDemo, setSelectedDemo] = useState(null);
 
   if (!demos.length) {

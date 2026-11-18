@@ -9,6 +9,7 @@ import { Dialog, Transition } from '@headlessui/react';
 // Types for Demo (adjust based on your actual Convex schema)
 interface Demo {
     _id: string;
+    _creationTime?: number;
     title: string;
     description: string;
     link: string;
@@ -17,7 +18,10 @@ interface Demo {
 }
 
 const DemoList = () => {
-    const demos = useQuery(api.demos.list) || [];
+    const rawDemos = useQuery(api.demos.list) || [];
+    const demos = React.useMemo(() => {
+        return [...rawDemos].sort((a: any, b: any) => (b._creationTime || 0) - (a._creationTime || 0));
+    }, [rawDemos]);
     const updateDemo = useMutation(api.demos.update);
     const removeDemo = useMutation(api.demos.remove);
 
